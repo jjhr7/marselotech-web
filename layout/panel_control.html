@@ -1,62 +1,100 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <title>New Launch v1.0.0 | Responsive Coming Soon Page HTML</title>
-
-    <!-- Mobile meta tag -->
+    <title>Login | Marselotech</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="HTML5 Template">
+
 
     <!-- Start Header styles -->
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/owl.carousel.css">
-    <link rel="stylesheet" href="../css/jquery.fullPage.css">
-    <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
-    <link rel="stylesheet" href="../css/magnific-popup.css">
     <link rel="stylesheet" href="../css/style.css">
-    <!-- End Header styles-->
-
-    <!--Fonts -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100&subset=latin,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" href="../css/login.css" />
+    <!-- End Header styles-->
     <!-- Favion -->
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
     <!-- Apple touch icon -->
     <link rel="apple-touch-icon" href="../apple-touch-icon-precomposed.png">
 
 </head>
-<body>
+<body class="bg-dark-x">
 <!-- Start Loader -->
-<div class='loading'>
+<!--<div class='loading'>
     <div class='loader'>
         <img height='80' src='../images/loader.svg' width='80'>
     </div>
-</div>
+</div>-->
 <!-- End Loader -->
 
 <div class='page-wrap' id='fullpage'>
     <!-- Particles Background -->
     <canvas class='bg-particles' id='bg-particles'></canvas>
 
-    <!-- Start Welcome -->
-    <section class='welcome section-content section background-parallax bg-image-1'>
+    <section class="welcome section-content section background-parallax bg-image-1">
         <div class='overlay'></div>
-        <div class='container'>
-            <div class='row'>
-                <div class='col-sm-12'>
-                    <-- Poner aca el contenido -->
+        <div class="container" style="padding-right: 0;padding-left: 0;margin-right: 0;margin-left: 0;">
+            <div class="row g-0">
+                <div class="col-lg-6 col-sm-12 bg-dark d-flex flex-column  min-vh-100">
+                    <div class="px-lg-5 pt-lg-4 pl-4 pt-4 w-100">
+                        <a href="../index.html">
+                            <button type="button" class="btn btn-sm btn-secondary">Salir</button>
+                        </a>
+
+                    </div>
+                    <div class=" my-auto px-lg-5 py-lg-4">
+
+                        <div class=" mb-5 d-flex">
+                            <div class="col-8 text-right">
+                                <img src="../images/turtlebot3-sin-fondo.png" style="width: 65%;" />
+                            </div>
+                            <div class="col-4 text-center d-flex align-items-center p-2">
+                                <div class="card text-left pt-2 pl-2 pr-2">
+                                    <p class="text-start fs-6">Estado del Marselobot:</p>
+
+                                    <div class="text-left ">
+                                        <p class="text-start success fs-6 text-success">Robot conectado</p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class=" row mb-5 pr-2 pl-2">
+                            <div class="col-9 text-center">
+                                <div class="col-12 pb-2">
+                                    <button type="button" class="btn btn-outline-info">Adelante</button>
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    <button type="button" class="btn btn-outline-info">Izquierda</button>
+                                    <button type="button" class="btn btn-outline-info">Derecha</button>
+                                </div>
+                                <div class="col-12 pt-2 ">
+                                    <button type="button" class="btn btn-outline-info">Atrás</button>
+                                </div>
+
+                            </div>
+                            <div class="col-3 d-flex flex-column">
+                                <button type="button" class="btn btn-outline-success">Conectar</button>
+                                <button type="button" class="btn btn-outline-danger ml-0 mt-2 text-wrap">Desconectar</button>
+                                <button type="button" class="btn btn-outline-warning ml-0 mt-2">Parar</button>
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
+                <div class="col-lg-6 d-none d-lg-block">
+
+                </div>
+
             </div>
         </div>
+
     </section>
-    <!-- End Welcome -->
-
 </div>
-<!-- Start Footer -->
-
-<!-- End Footer -->
 
 <!-- Start Scripts -->
 <script src="../js/jquery-3.2.1.min.js"></script>
