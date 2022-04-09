@@ -24,6 +24,13 @@
 /**
 	1. Global
 **/
+
+@font-face {
+  font-family: 'ShareTech';
+  src: url("../fonts/ShareTechMono-Regular.ttf");
+}
+
+
 body {
   color: #fff;
   font-family: "Roboto", "Arial", sans-serif;
@@ -108,8 +115,11 @@ h1, h2, h3, h4, h5 {
   margin: 0 0 18px;
   padding: 0;
   letter-spacing: 0.02em;
-  font-family: "Roboto", "Arial", sans-serif;
+  font-family: 'Share Tech Mono', monospace;
   line-height: 1.2;
+}
+.title-header{
+  font-family: 'Share Tech Mono', monospace;
 }
 
 .h1,
@@ -289,8 +299,8 @@ label {
   margin-left: 10px;
 }
 .btn.btn-color {
-  background-color: #9800de;
-  border-color: #9800de;
+  background-color: #00E0FF;
+  border-color: #00E0FF;
   color: #fff;
 }
 .btn.btn-color:hover {
@@ -751,7 +761,7 @@ label {
 }
 
 .bg-primary {
-  background-color: #9800de;
+  background-color: #00E0FF;
 }
 
 .bg-white {
@@ -782,7 +792,7 @@ textarea.form-control {
 }
 .form-control.border-bottom:hover, .form-control.border-bottom:focus {
   border-color: transparent;
-  border-bottom-color: #9800de;
+  border-bottom-color: #00E0FF
 }
 .form-control:hover, .form-control:focus {
   -moz-box-shadow: none;
@@ -994,7 +1004,7 @@ input.form-control {
   font-size: 14px;
 }
 .gallery-slide .gallery-item:before {
-  background-color: #9800de;
+  background-color: #00E0FF;
   content: '';
   display: block;
   width: 100%;
@@ -1409,7 +1419,7 @@ input.form-control {
 }
 
 .highlight {
-  color: #9800de;
+  color: #00E0FF;
 }
 
 .f-bold {
@@ -1575,7 +1585,7 @@ input.form-control {
   transform: scale(1) translate3d(0, 0, 0);
 }
 .logo:hover .icon {
-  color: #9800de;
+  color: #00E0FF;
   -moz-transform: scale(0.9) translate3d(0, 0, 0);
   -ms-transform: scale(0.9) translate3d(0, 0, 0);
   -webkit-transform: scale(0.9) translate3d(0, 0, 0);
@@ -1981,3 +1991,15 @@ input.form-control {
     transform: rotate(360deg);
   }
 }
+
+/*********************************************************************/
+/*Css añadido por el equipo de desarrollo*/
+.horizontal-bar{
+  border-left: thick solid #00E0FF;
+  height:100%;
+}
+.cloud-background{
+  background-image: url("../images/backgrounds/clouds.png");
+  background-repeat: no-repeat;
+}
+
