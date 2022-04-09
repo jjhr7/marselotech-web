@@ -173,7 +173,7 @@
 
     var prevIndex = 0;
     $('#fullpage').fullpage({
-        anchors: ['welcome', 'about', 'gallery', 'subscribe', 'services', 'contacts'],
+        anchors: ['inicio', 'modos', 'modo-soporte', 'modo-exploración', 'modo-vigilancia', 'contacto'],
         menu: '#header-nav',
         scrollingSpeed: 800,
         autoScrolling: true,
@@ -262,25 +262,7 @@
     /* ------------------------------------------------------------------------ */
     /*  Popups
     /* ------------------------------------------------------------------------ */
-    // Video
-    $('.js-link-video').magnificPopup({
-        type: 'iframe',
-        closeBtnInside: true
-    });
 
-    // Gallery
-    $('.js-gallery').magnificPopup({
-        delegate: 'a',
-        type: 'image',
-        tLoading: 'Loading image #%curr%...',
-        mainClass: 'mfp-img-mobile',
-        image: {
-            tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-        },
-        gallery: {
-            enabled: true
-        }
-    });
 
     /* ------------------------------------------------------------------------ */
     /*  ANIMATED ELEMENTS

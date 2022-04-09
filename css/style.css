@@ -1994,12 +1994,20 @@ input.form-control {
 
 /*********************************************************************/
 /*Css añadido por el equipo de desarrollo*/
-.horizontal-bar{
+.left-vertical-bar{
   border-left: thick solid #00E0FF;
+  height:100%;
+}
+.right-vertical-bar{
+  border-right: thick solid #00E0FF;
   height:100%;
 }
 .cloud-background{
   background-image: url("../images/backgrounds/clouds.png");
   background-repeat: no-repeat;
+}
+
+.custom-horizontal-bar{
+  border-bottom: thick solid #00E0FF;
 }
 
