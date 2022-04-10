@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', event => {
 
     document.getElementById("btn_conectar").addEventListener("click", connect)
     document.getElementById("btn_desconectar").addEventListener("click", disconnect)
-    document.getElementById("btn_move").addEventListener("click", move)
-    //document.getElementById("btn_parar").addEventListener("click", stop)
+    document.getElementById("btn_adelante").addEventListener("click", move)
+    document.getElementById("btn_parar").addEventListener("click", stop)
     document.getElementById("btn_izquierda").addEventListener("click", () => {
         call_delante_service("izquierda")
     })
@@ -34,13 +34,6 @@ document.addEventListener('DOMContentLoaded', event => {
         logMessage(`Key "${w.data}" about to be input  [event: beforeinput]`);
         call_delante_service("delante")
     });
-
-    var limiteSuperior = -0.5
-    var limiteInferior = -1.5
-    var limiteIzquierda = -2.5
-    var limiteDerecha = -1.5
-
-    var modo_jaula = false;
 
 
 
@@ -150,69 +143,6 @@ document.addEventListener('DOMContentLoaded', event => {
         topic.publish(message)
     }
 
-    function change_direction() {
-        let topic = new ROSLIB.Topic({
-            ros: data.ros,
-            name: '/cmd_vel',
-            messageType: 'geometry_msgs/msg/Twist'
-        })
-        let message = new ROSLIB.Message({
-            linear: {x: 0.1, y: 0, z: 0, },
-            angular: {x: 0, y: 0, z: 0.2, },
-        })
-        topic.publish(message)
-    }
-
-    function rotar_90(){
-
-        console.log("Dentro 90º")
-        let topic = new ROSLIB.Topic({
-            ros: data.ros,
-            name: '/cmd_vel',
-            messageType: 'geometry_msgs/msg/Twist'
-        })
-        stop()
-        let message = new ROSLIB.Message({
-            linear: {x: 0, y: 0, z: 0, },
-            angular: {x: 0, y: 0, z: -0.2, },
-        })
-        topic.publish(message)
-
-        stop()
-
-    }
-
-    function comparar_coordenadas(){
-
-        console.log("Dentro comparar coordenadas")
-        var xrobot = data.position.x.toFixed(2)
-        var yrobot = data.position.y.toFixed(2)
-
-        if(xrobot==limiteDerecha || xrobot==limiteIzquierda || yrobot==limiteSuperior || yrobot==limiteInferior){
-            console.log("Devolviendo true")
-            console.log("Devolviendo true")
-            return true
-
-        }else{
-            console.log("Devolviendo false")
-            return false
-
-        }
-    }
-
-    function activar_jaula(){
-
-        modo_jaula = true
-
-        console.log("Se ha activado la jaula: "+modo_jaula)
-    }
-
-    function desactivar_jaula(){
-
-        modo_jaula = false
-
-        console.log("Se ha activado la jaula: "+modo_jaula)
-    }
 
     function call_delante_service(valor){
 
