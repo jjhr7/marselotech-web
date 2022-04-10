@@ -2010,4 +2010,7 @@ input.form-control {
 .custom-horizontal-bar{
   border-bottom: thick solid #00E0FF;
 }
+.pading-logo{
+  padding-top: 10px;
+}
 
