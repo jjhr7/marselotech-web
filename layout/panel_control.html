@@ -1,0 +1,147 @@
+<!doctype html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <title>Panel de control | Marselotech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Start Header styles -->
+    <script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100&subset=latin,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/login.css" />
+    <!-- End Header styles-->
+    <!-- Favion -->
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+    <!-- Apple touch icon -->
+    <link rel="apple-touch-icon" href="../apple-touch-icon-precomposed.png">
+
+</head>
+<body class="bg-dark-x">
+<!-- Start Loader -->
+<!--<div class='loading'>
+    <div class='loader'>
+        <img height='80' src='../images/loader.svg' width='80'>
+    </div>
+</div>-->
+<!-- End Loader -->
+
+<div class='page-wrap' id='fullpage'>
+    <!-- Particles Background -->
+    <canvas class='bg-particles' id='bg-particles'></canvas>
+
+    <section class="welcome section-content section background-parallax bg-image-1">
+        <div class='overlay'></div>
+        <div class="container" style="padding-right: 0;padding-left: 0;margin-right: 0;margin-left: 0;">
+            <div class="row g-0">
+                <div class="col-lg-6 col-sm-12 bg-dark d-flex flex-column  min-vh-100">
+                    <div class="px-lg-5 pt-lg-4 pl-4 pt-4 w-100">
+                        <a href="../index.html">
+                            <button type="button" class="btn btn-sm btn-secondary">Salir</button>
+                        </a>
+
+                    </div>
+                    <div class=" my-auto px-lg-5 py-lg-4">
+
+                        <div class=" mb-5 d-flex">
+                            <div class="col-8 text-right">
+                                <img src="../images/turtlebot3-sin-fondo.png" style="width: 65%;" />
+                            </div>
+                            <div class="col-4 text-center d-flex align-items-center p-2">
+                                <div class="card text-left pt-2 pl-2 pr-2">
+                                    <p class="text-start fs-6">Estado del Marselobot:</p>
+
+                                    <div class="text-left ">
+                                        <p class="text-start success fs-6 text-success" id="robot_conectado">Robot desconectado</p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class=" row mb-5 pr-2 pl-2">
+                            <div class="col-9 text-center">
+                                <div class="col-12 pb-2">
+                                    <button type="button" class="btn btn-outline-info" id="btn_adelante">Adelante</button>
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    <button type="button" class="btn btn-outline-info" id="btn_izquierda">Izquierda</button>
+                                    <button type="button" class="btn btn-outline-info" id="btn_derecha">Derecha</button>
+                                </div>
+                                <div class="col-12 pt-2 ">
+                                    <button type="button" class="btn btn-outline-info" id="btn_atras">Atrás</button>
+                                </div>
+                                <div class="col-12 pt-4">
+                                    <p class="text-left text-white">Nota: También se pueden utilizar las teclas AWSD para mover el robot.</p>
+                                </div>
+
+                            </div>
+                            <div class="col-3 d-flex flex-column">
+                                <button type="button" class="btn btn-outline-success" id="btn_conectar">Conectar</button>
+                                <button type="button" class="btn btn-outline-danger ml-0 mt-2 text-wrap" id="btn_desconectar">Desconectar</button>
+                                <button type="button" class="btn btn-outline-warning ml-0 mt-2" id="btn_parar">Parar</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<!-- Start Scripts -->
+<script src="../js/jquery-3.2.1.min.js"></script>
+
+<script src="../js/jquery.easing.1.3.js"></script>
+
+<!-- Bootsrap plugins -->
+<script src="../js/bootstrap.min.js"></script>
+
+<!-- Countdown -->
+<script src="../js/jquery.countdown.js"></script>
+
+<!-- Youtube player -->
+<script src="../js/jquery.mb.YTPlayer.js"></script>
+
+<!-- Others -->
+<script src="../js/jquery.fullPage.min.js"></script>
+<script src="../js/jquery.appear.js"></script>
+<script src="../js/jquery.fitvids.js"></script>
+<script src="../js/jquery.backstretch.min.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+
+<!-- Mailchimp -->
+<script src="../js/jquery.ajaxchimp.js"></script>
+
+<!-- Particles -->
+<script src="../js/particles.js"></script>
+
+
+<!-- Moment -->
+<script src="../js/moment.js"></script>
+<!-- Magnific popup -->
+<script src="../js/jquery.magnific-popup.min.js"></script>
+
+<!-- Main -->
+<script src="../js/main.js"></script>
+<!-- End Scripts -->
+
+<!-- Script del robot -->
+<script src="../js/robot.js"></script>
+<!-- End Scripts -->
+
+<script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
+</body>
+</html>
