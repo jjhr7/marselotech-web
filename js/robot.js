@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', event => {
     document.getElementById("btn_desconectar").addEventListener("click", disconnect)
     document.getElementById("btn_adelante").addEventListener("click", move)
     document.getElementById("btn_parar").addEventListener("click", stop)
+    document.getElementById("btn_derecha").addEventListener("click", move_derecha)
+    document.getElementById("btn_izquierda").addEventListener("click", move_izquierda)
+    document.getElementById("btn_atras").addEventListener("click", move_detras)
+
     document.getElementById("btn_izquierda").addEventListener("click", () => {
         call_delante_service("izquierda")
     })
@@ -21,6 +25,7 @@ document.addEventListener('DOMContentLoaded', event => {
         call_delante_service("parar")
     })
 
+    //w
     document.addEventListener("keydown", (w) => {
         call_delante_service("delante")
     })
@@ -30,9 +35,54 @@ document.addEventListener('DOMContentLoaded', event => {
         call_delante_service("delante")
     });
 
-    document.addEventListener('beforeinput', (w) => {
-        logMessage(`Key "${w.data}" about to be input  [event: beforeinput]`);
-        call_delante_service("delante")
+    document.addEventListener('beforeinput', (a) => {
+        logMessage(`Key "${a.data}" about to be input  [event: beforeinput]`);
+        call_delante_service("izquierda")
+    });
+
+    //a
+    document.addEventListener("keydown", (a) => {
+        call_delante_service("izquierda")
+    })
+
+    document.addEventListener('input', (a) => {
+        logMessage(`Key "${a.data}" input  [event: input]`);
+        call_delante_service("izquierda")
+    });
+
+    document.addEventListener('beforeinput', (a) => {
+        logMessage(`Key "${a.data}" about to be input  [event: beforeinput]`);
+        call_delante_service("izquierda")
+    });
+
+    //s
+    document.addEventListener("keydown", (s) => {
+        call_delante_service("atras")
+    })
+
+    document.addEventListener('input', (s) => {
+        logMessage(`Key "${s.data}" input  [event: input]`);
+        call_delante_service("atras")
+    });
+
+    document.addEventListener('beforeinput', (s) => {
+        logMessage(`Key "${s.data}" about to be input  [event: beforeinput]`);
+        call_delante_service("atras")
+    });
+
+    //d
+    document.addEventListener("keydown", (d) => {
+        call_delante_service("derecha")
+    })
+
+    document.addEventListener('input', (d) => {
+        logMessage(`Key "${d.data}" input  [event: input]`);
+        call_delante_service("derecha")
+    });
+
+    document.addEventListener('beforeinput', (d) => {
+        logMessage(`Key "${d.data}" about to be input  [event: beforeinput]`);
+        call_delante_service("derecha")
     });
 
 
@@ -62,8 +112,8 @@ document.addEventListener('DOMContentLoaded', event => {
         })
         topic.subscribe((message) => {
             data.position = message.pose.pose.position
-            document.getElementById("pos_x").innerHTML = data.position.x.toFixed(2)
-            document.getElementById("pos_y").innerHTML = data.position.y.toFixed(2)
+            //document.getElementById("pos_x").innerHTML = data.position.x.toFixed(2)
+            //document.getElementById("pos_y").innerHTML = data.position.y.toFixed(2)
         })
 
         // Define callbacks
@@ -91,12 +141,7 @@ document.addEventListener('DOMContentLoaded', event => {
     }
 
     function move() {
-        if (modo_jaula == true){
-
-            var movimiento = comparar_coordenadas()
-
-            if(movimiento == false){
-
+        
                 let topic = new ROSLIB.Topic({
                     ros: data.ros,
                     name: '/cmd_vel',
@@ -110,24 +155,72 @@ document.addEventListener('DOMContentLoaded', event => {
 
                 topic.publish(message)
 
-            }else{
+    }
 
-                rotar_90()
+    function move_detras() {
+        
+                let topic = new ROSLIB.Topic({
+                    ros: data.ros,
+                    name: '/cmd_vel',
+                    messageType: 'geometry_msgs/msg/Twist'
+                })
 
-            }
-        }else{
+                let message = new ROSLIB.Message({
+                    linear: {x: -0.1, y: 0, z: 0, },
+                    angular: {x: 0, y: 0, z: 0},
+                })
 
-            let topic = new ROSLIB.Topic({
-                ros: data.ros,
-                name: '/cmd_vel',
-                messageType: 'geometry_msgs/msg/Twist'
-            })
-            let message = new ROSLIB.Message({
-                linear: {x: 0.1, y: 0, z: 0, },
-                angular: {x: 0, y: 0, z: -0.2, },
-            })
-            topic.publish(message)
-        }
+                topic.publish(message)
+    }
+
+    function move_izquierda() {
+        
+        let topic = new ROSLIB.Topic({
+            ros: data.ros,
+            name: '/cmd_vel',
+            messageType: 'geometry_msgs/msg/Twist'
+        })
+
+        let message = new ROSLIB.Message({
+            linear: {x: 0.1, y: 0, z: 0.1, },
+            angular: {x: 0, y: 0, z: 0},
+        })
+
+        topic.publish(message)
+
+    }
+
+    function move_derecha() {
+        
+        let topic = new ROSLIB.Topic({
+            ros: data.ros,
+            name: '/cmd_vel',
+            messageType: 'geometry_msgs/msg/Twist'
+        })
+
+        let message = new ROSLIB.Message({
+            linear: {x: 0.1, y: 0, z: -0.1, },
+            angular: {x: 0, y: 0, z: 0},
+        })
+
+        topic.publish(message)
+
+    }
+    function move() {
+        
+                let topic = new ROSLIB.Topic({
+                    ros: data.ros,
+                    name: '/cmd_vel',
+                    messageType: 'geometry_msgs/msg/Twist'
+                })
+
+                let message = new ROSLIB.Message({
+                    linear: {x: 0.1, y: 0, z: 0, },
+                    angular: {x: 0, y: 0, z: 0},
+                })
+
+                topic.publish(message)
+
     }
 
     function stop() {
