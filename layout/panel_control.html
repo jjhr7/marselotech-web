@@ -54,7 +54,7 @@
                                     <p class="text-start fs-6">Estado del Marselobot:</p>
 
                                     <div class="text-left ">
-                                        <p class="text-start success fs-6 text-success">Robot conectado</p>
+                                        <p class="text-start success fs-6 text-success" id="robot_conectado">Robot desconectado</p>
 
                                     </div>
                                 </div>
@@ -65,21 +65,21 @@
                         <div class=" row mb-5 pr-2 pl-2">
                             <div class="col-9 text-center">
                                 <div class="col-12 pb-2">
-                                    <button type="button" class="btn btn-outline-info">Adelante</button>
+                                    <button type="button" class="btn btn-outline-info" id="btn_adelante">Adelante</button>
                                 </div>
                                 <div class="col-12 d-flex justify-content-center">
-                                    <button type="button" class="btn btn-outline-info">Izquierda</button>
-                                    <button type="button" class="btn btn-outline-info">Derecha</button>
+                                    <button type="button" class="btn btn-outline-info" id="btn_izquierda">Izquierda</button>
+                                    <button type="button" class="btn btn-outline-info" id="btn_derecha">Derecha</button>
                                 </div>
                                 <div class="col-12 pt-2 ">
-                                    <button type="button" class="btn btn-outline-info">Atrás</button>
+                                    <button type="button" class="btn btn-outline-info" id="btn_atras">Atrás</button>
                                 </div>
 
                             </div>
                             <div class="col-3 d-flex flex-column">
-                                <button type="button" class="btn btn-outline-success">Conectar</button>
-                                <button type="button" class="btn btn-outline-danger ml-0 mt-2 text-wrap">Desconectar</button>
-                                <button type="button" class="btn btn-outline-warning ml-0 mt-2">Parar</button>
+                                <button type="button" class="btn btn-outline-success" id="btn_conectar">Conectar</button>
+                                <button type="button" class="btn btn-outline-danger ml-0 mt-2 text-wrap" id="btn_desconectar">Desconectar</button>
+                                <button type="button" class="btn btn-outline-warning ml-0 mt-2" id="btn_parar">Parar</button>
 
                             </div>
 
@@ -131,6 +131,10 @@
 
 <!-- Main -->
 <script src="../js/main.js"></script>
+<!-- End Scripts -->
+
+<!-- Script del robot -->
+<script src="../js/robot.js"></script>
 <!-- End Scripts -->
 </body>
 </html>
