@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', event => {
             data.connected = true
             console.log("Conexion con ROSBridge correcta")
             document.getElementById("robot_conectado").innerHTML="Robot conectado"
+            setCamera();
         })
         data.ros.on("error", (error) => {
             console.log("Se ha producido algun error mientras se intentaba realizar la conexion")
@@ -130,8 +131,6 @@ document.addEventListener('DOMContentLoaded', event => {
             data.connected = false
             console.log("Conexion con ROSBridge cerrada")
         })
-
-        setCamera();
 
     }
 
@@ -275,7 +274,7 @@ document.addEventListener('DOMContentLoaded', event => {
         console.log("entra fucion serCamara()")
         let viewer1 = new MJPEGCANVAS.Viewer({
             divID: "divCamera", //elemento del html donde mostraremos la cámara
-            host: "127.0.0.1:8080", //dirección del servidor de vídeo
+            host: "127.0.0.1:9090", //dirección del servidor de vídeo
             width: 320, //no pongas un tamaño mucho mayor porque puede dar error
             height: 240,
             topic: "/turtlebot3/camera/image_raw",
