@@ -115,6 +115,12 @@ document.addEventListener('DOMContentLoaded', event => {
             //document.getElementById("pos_x").innerHTML = data.position.x.toFixed(2)
             //document.getElementById("pos_y").innerHTML = data.position.y.toFixed(2)
         })
+        let topic3 = new ROSLIB.Topic({
+            ros: data.ros,
+            name: '/image',
+            messageType: 'sensor_msgs/msg/Image'
+        })
+        topic3.subscribe();
 
         // Define callbacks
         data.ros.on("connection", () => {
@@ -272,14 +278,18 @@ document.addEventListener('DOMContentLoaded', event => {
     // --------------------------------------------------------------------------------------
     function setCamera(){
         console.log("entra fucion serCamara()")
-        let viewer1 = new MJPEGCANVAS.Viewer({
+
+        let dengue = new MJPEGCANVAS.Viewer({
             divID: "divCamera", //elemento del html donde mostraremos la cámara
-            host: "127.0.0.1:9090", //dirección del servidor de vídeo
+            host: "ws:127.0.0.1", //dirección del servidor de vídeo
+            port: "9090",
             width: 320, //no pongas un tamaño mucho mayor porque puede dar error
             height: 240,
-            topic: "/turtlebot3/camera/image_raw",
+            topic: "/image",
             ssl: false,
         })
+
+        console.log(dengue)
     }
     // --------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------
