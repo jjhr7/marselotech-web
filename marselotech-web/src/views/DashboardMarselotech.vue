@@ -1,23 +1,23 @@
 <template>
-    <div class="grey lighten-3">
+    <div class="grey">
 
     <!--Main Navigation-->
     <header>
 
         <!-- Sidebar -->
-        <div class="sidebar-fixed position-fixed">
+        <div class="sidebar-fixed position-fixed sidebar">
 
             <a href="../index.html" class=" waves-effect mt-2">
                 <img src="images/marselotech-logo.png" class="img-fluid" alt="">
             </a>
 
             <div class="list-group list-group-flush mt-2">
-                <a href="panel_control.html" class="list-group-item active waves-effect">
+                <a href="panel_control.html" class="list-group-item active waves-effect sidebar txt1">
                     <i class="fas fa-chart-pie mr-3"></i>Dashboard
                 </a>
-                <a href="#" class="list-group-item list-group-item-action waves-effect">
+                <a href="#" class="list-group-item list-group-item-action waves-effect sidebar txt1">
                     <i class="fas fa-user mr-3"></i>Profile</a>
-                <a href="../index.html" class="list-group-item list-group-item-action waves-effect">
+                <a href="../index.html" class="list-group-item list-group-item-action waves-effect sidebar txt1">
                     <i class="fas fa-backward mr-3"></i>Volver</a>
             </div>
 
@@ -38,8 +38,8 @@
 
                     <h4 class="mb-2 mb-sm-0 pt-1">
                         <a href="../index.html" >Marselotech</a>
-                        <span>/</span>
-                        <span>Panel de control</span>
+                        <span class="txt1">/</span>
+                        <span class="txt1">Panel de control</span>
                     </h4>
                 </div>
 
@@ -50,7 +50,7 @@
             <div class="row wow fadeIn">
 
                 <!--Grid column-->
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4 ">
 
                     <!--Card-->
                     <div class="card mb-4">
@@ -97,7 +97,7 @@
                     <div class="card">
 
                         <!-- Card header -->
-                        <div class="card-header">Mapa dengue</div>
+                        <div class="card-header txt1">Mapa</div>
 
                         <!--Card content-->
                         <div class="card-body">
@@ -132,7 +132,7 @@
                     <div class="card">
 
                         <!-- Card header -->
-                        <div class="card-header">Camara dengue</div>
+                        <div class="card-header txt1">Camara</div>
 
                         <!--Card content-->
                         <div class="card-body">
@@ -179,17 +179,52 @@ export default{
 </script>
 
 <style>
-        .map-container{
-            overflow:hidden;
-            padding-bottom:56.25%;
-            position:relative;
-            height:0;
-        }
-        .map-container iframe{
-            left:0;
-            top:0;
-            height:100%;
-            width:100%;
-            position:absolute;
-        }
+
+  .map-container{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+  }
+  .map-container iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+  }
+
+  :root{
+    /* dark color */
+    --dark-h: 0;
+    --dark-s: 0%;
+    --dark-l: 12%;
+    --dark-color: var(--dark-h), var(--dark-s), var(--dark-l);
+    /* light color */
+    --light-h: 0;
+    --light-s: 0%;
+    --light-l: 100%;
+    --light-color: var(--light-h), var(--light-s), var(--light-l);
+
+    --bg-color-one: var(--dark-color);
+    --bg-color-two: var(--dark-h), var(--dark-s), calc(var(--dark-l) + 7%);
+    --t-color-one: var(--light-color);
+
+  }
+
+  .card {
+    background-color: hsl(var(--bg-color-two)) !important;
+  }
+
+  .sidebar{
+    background-color: hsl(var(--bg-color-two)) !important;
+  }
+
+  .grey{
+    background-color: hsl(var(--bg-color-one)) !important;
+  }
+
+  .txt1{
+    color: hsl(var(--t-color-one)) !important;
+  }
 </style>
