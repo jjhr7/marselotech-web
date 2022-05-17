@@ -20,7 +20,6 @@
           <strong class="title-header">Marselotech</strong>
         </a>
       </div>
-
       <!-- Social navigation -->
       <div class='social-nav'>
         <ul>
@@ -342,10 +341,10 @@
   </div>
 </footer>
 <!-- End Footer -->
+
 </template>
 
 <script>
-
 
 export default{
     name: 'HomeMarselotech',
