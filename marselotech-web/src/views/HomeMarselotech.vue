@@ -20,6 +20,7 @@
           <strong class="title-header">Marselotech</strong>
         </a>
       </div>
+      
       <!-- Social navigation -->
       <div class='social-nav'>
         <ul>
@@ -69,7 +70,7 @@
           </div>
           <div class="col-sm-12">
             <div class='mg-t'>
-              <a class='btn btn-color btn-lg js-to-slide animated onstart' data-animation-delay='300' data-animation='fadeInUp' data-slide='4' href='layout/login.html'>
+                <a class='btn btn-color btn-lg js-to-slide animated onstart' data-animation-delay='300' data-animation='fadeInUp' data-slide='4' href='layout/login.html'>
                 Panel de control
               </a>
               <a class='btn btn-outline btn-lg js-to-slide animated onstart' data-animation-delay='400' data-animation='fadeInUp' data-slide='2' href='#'>
@@ -350,11 +351,10 @@ export default{
     name: 'HomeMarselotech',
     mounted(){
         const jspath = 'js/';
-        var jslibs = ['jquery-3.2.1.min.js', 'jquery.easing.1.3.js', 'bootstrap.min.js', 'jquery.countdown.js', 'jquery.fullPage.min.js', 'jquery.appear.js', 'jquery.fitvids.js', 'jquery.backstretch.min.js', 'owl.carousel.min.js', 'jquery.ajaxchimp.js', 'particles.js', 'moment.js', 'main.js'];
+        var jslibs = ['jquery-3.2.1.min.js', 'jquery.easing.1.3.js', 'bootstrap.min.js', 'jquery.countdown.js', 'jquery.fullPage.min.js', 'jquery.appear.js', 'jquery.fitvids.js', 'jquery.backstretch.min.js', 'owl.carousel.min.js', 'jquery.ajaxchimp.js', 'particles.js', 'moment.js','main.js'];
         for(var i=0;i<14;i++){
             var customLib = document.createElement("script");
             customLib.setAttribute('src',jspath+jslibs[i]);
-            customLib.setAttribute('crossorigin', 'anonymous');
             document.body.appendChild(customLib);
         }
     }
