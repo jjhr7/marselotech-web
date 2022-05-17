@@ -70,7 +70,7 @@
           </div>
           <div class="col-sm-12">
             <div class='mg-t'>
-                <a class='btn btn-color btn-lg js-to-slide animated onstart' data-animation-delay='300' data-animation='fadeInUp' data-slide='4' href='layout/login.html'>
+                <a class='btn btn-color btn-lg js-to-slide animated onstart' data-animation-delay='300' data-animation='fadeInUp' data-slide='4' href='../../../layout/login.html'>
                 Panel de control
               </a>
               <a class='btn btn-outline btn-lg js-to-slide animated onstart' data-animation-delay='400' data-animation='fadeInUp' data-slide='2' href='#'>
