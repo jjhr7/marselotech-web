@@ -1,11 +1,5 @@
 <template>
-<!-- Start Loader -->
-<div class='loading'>
-  <div class='loader'>
-    <img height='80' src='images/loader.svg' width='80'>
-  </div>
-</div>
-<!-- End Loader -->
+ <LoaderMarselotech/>
 <!-- Start Header -->
 <header class='page-header' id='page-header'>
   <div class='container-full pading-logo'>
@@ -70,9 +64,12 @@
           </div>
           <div class="col-sm-12">
             <div class='mg-t'>
-                <a class='btn btn-color btn-lg js-to-slide animated onstart' data-animation-delay='300' data-animation='fadeInUp' data-slide='4' href='../../../layout/login.html'>
+              <router-link to="/login">
+                <a class='btn btn-color btn-lg js-to-slide animated onstart' data-animation-delay='300' data-animation='fadeInUp' data-slide='4' href=''>
                 Panel de control
               </a>
+              </router-link>
+                
               <a class='btn btn-outline btn-lg js-to-slide animated onstart' data-animation-delay='400' data-animation='fadeInUp' data-slide='2' href='#'>
                 Saber más
                 <i class='fa fa-angle-down'></i>
@@ -346,19 +343,13 @@
 </template>
 
 <script>
+import LoaderMarselotech from '@/components/LoaderMarselotech.vue';
 
 export default{
-    name: 'HomeMarselotech',
-    mounted(){
-        const jspath = 'js/';
-        var jslibs = ['jquery-3.2.1.min.js', 'jquery.easing.1.3.js', 'bootstrap.min.js', 'jquery.countdown.js', 'jquery.fullPage.min.js', 'jquery.appear.js', 'jquery.fitvids.js', 'jquery.backstretch.min.js', 'owl.carousel.min.js', 'jquery.ajaxchimp.js', 'particles.js', 'moment.js','main.js'];
-        for(var i=0;i<14;i++){
-            var customLib = document.createElement("script");
-            customLib.setAttribute('src',jspath+jslibs[i]);
-            document.body.appendChild(customLib);
-        }
-    }
-
+    name: "HomeMarselotech",
+    mounted() {
+    },
+    components: { LoaderMarselotech }
 }
 </script>
 

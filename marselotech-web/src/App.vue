@@ -1,33 +1,35 @@
 <template>
  
- <HomeMarselotech v-if="visible"/>
- <LoginDashboard v-else/>
+<router-view/>
+
 </template>
 
 <script>
+import { onMounted } from 'vue';
 
-import HomeMarselotech from '@/views/HomeMarselotech.vue'
-import LoginDashboard from '@/views/LoginDashboard.vue'
 
 export default {
     name: "App",
-    data() {
-        return {
-            visible: true
-        };
-    },
-    watch: {},
-    computed: {
+    setup(){
 
-    },
-    methods: {
-        changeElement(){
-            this.visible = false;
-        }
-    },
-    mounted() {
-    },
-    components: { HomeMarselotech, LoginDashboard }
+        onMounted(()=>{
+
+            setTimeout(() => {
+                const jspath = 'js/';
+                var jslibs = ['jquery-3.2.1.min.js', 'jquery.easing.1.3.js', 'bootstrap.min.js', 'jquery.countdown.js', 'jquery.fullPage.min.js', 'jquery.appear.js', 'jquery.fitvids.js', 'jquery.backstretch.min.js', 'owl.carousel.min.js', 'jquery.ajaxchimp.js', 'particles.js', 'moment.js', 'main.js'];
+                for(var i=0;i<13;i++){
+                    
+                    var customLib = document.createElement("script");
+                    customLib.setAttribute('src',jspath+jslibs[i]);
+                    document.body.appendChild(customLib);
+
+                }
+            }, 1500);
+               
+        });
+    
+        return {}
+    }
 }
 </script>
 

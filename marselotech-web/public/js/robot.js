@@ -120,7 +120,9 @@ document.addEventListener('DOMContentLoaded', event => {
             name: '/image',
             messageType: 'sensor_msgs/msg/Image'
         })
-        topic3.subscribe();
+        topic3.subscribe((message) => {
+            console.log(message + " asfasa")
+        })
 
         // Define callbacks
         data.ros.on("connection", () => {

@@ -1,12 +1,5 @@
 <template>
-<!-- Start Loader -->
-    <div class='loading'>
-        <div class='loader'>
-            <img height='80' src='images/loader.svg' width='80'>
-        </div>
-    </div>
-    <!-- End Loader -->
-
+    <LoaderMarselotech/>
     <div class='page-wrap' id='fullpage'>
     <!-- Particles Background -->
         <canvas class='bg-particles' id='bg-particles'></canvas>
@@ -21,7 +14,7 @@
                         </div>-->
                         <div class="align-self-center my-auto w-100 px-lg-5 py-lg-4 p-4">
                             <h1 class="font-weight-bold mb-4 text-light">Bienvenido a Marselotech</h1>
-                            <form action="panel_control.html" class="mb-5">
+                            <form @submit.prevent="autenticate" class="mb-5">
                                 <div class="mb-4">
                                     <label for="exampleInputEmail1" class="form-label font-weight-bold text-light">Email</label>
                                     <input type="email" class="form-control bg-dark-x border-0" id="exampleInputEmail1" placeholder="Ingresa tu email" aria-describedby="emailHelp">
@@ -32,7 +25,10 @@
                                     <a href="" id="emailHelp" class="form-text text-muted text-decoration-none">¿Has olvidado tu código?</a>
                                 </div>
 
+                                
                                 <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                                
+                                
 
                             </form>
                         </div>
@@ -49,20 +45,19 @@
 </template>
 
 <script>
+import { onMounted } from 'vue';
+import LoaderMarselotech from '@/components/LoaderMarselotech.vue';
 
 export default{
-    name: 'LogiDashboard',
-    mounted(){
-        const jspath = 'js/';
-        var jslibs = ['jquery-3.2.1.min.js', 'jquery.easing.1.3.js', 'bootstrap.min.js', 'jquery.countdown.js', 'jquery.fullPage.min.js', 'jquery.appear.js', 'jquery.fitvids.js', 'jquery.backstretch.min.js', 'owl.carousel.min.js', 'jquery.ajaxchimp.js', 'particles.js', 'moment.js', 'main.js'];
-        for(var i=0;i<14;i++){
-            var customLib = document.createElement("script");
-            customLib.setAttribute('src',jspath+jslibs[i]);
-            customLib.setAttribute('crossorigin', 'anonymous');
-            document.body.appendChild(customLib);
-        }
-    }
-
+    name: "LogiDashboard",
+    setup() {
+    
+        const autenticate = () => {
+            console.log("Dengue");
+        };
+        return { autenticate };
+    },
+    components: { LoaderMarselotech }
 }
 </script>
 
