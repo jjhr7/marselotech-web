@@ -184,47 +184,71 @@
                 <div class="card">
 
                     <!-- Card header -->
-                    <div class="card-header txt1">Mapa</div>
-
-                    <!--Card content-->
-                    <div class="card-body">
-                        <!--Google map-->
-                        <div id="map-container-google-2" class="z-depth-1-half map-container" >
-                            <iframe src="https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
-                                    style="border:0" allowfullscreen></iframe>
-                        </div>
-
-                        <!--Google Maps-->
-
+                    <div class="card-header txt1">
+                        <!-- Tabs navs -->
+                        <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a onclick="changeTabActive(1)" class="nav-link active" id="ex-with-icons-tab-1" data-toggle="tab" data-mdb-toggle="tab" href="#a" role="tab"
+                                   aria-controls="ex-with-icons-tabs-1" aria-selected="true"><i class="fas fa-low-vision mr-2"></i>Vigilancia</a>
+                            </li>
+                            <li onclick="changeTabActive(2)" class="nav-item" role="presentation">
+                                <a class="nav-link" id="ex-with-icons-tab-2" data-toggle="tab" data-mdb-toggle="tab" href="#b" role="tab"
+                                   aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i class="fas fa-map-marker-alt mr-2"></i>Exploración</a>
+                            </li>
+                            <li onclick="changeTabActive(3)" class="nav-item" role="presentation">
+                                <a class="nav-link" id="ex-with-icons-tab-3" data-toggle="tab" data-mdb-toggle="tab" href="#c" role="tab"
+                                   aria-controls="ex-with-icons-tabs-3" aria-selected="false"><i class="fas fa-luggage-cart mr-2"></i>Soporte</a>
+                            </li>
+                        </ul>
+                        <!-- Tabs navs -->
                     </div>
 
-                </div>
-                <!--/.Card-->
-
-            </div>
-            <!--Grid column-->
-
-
-
-        </div>
-        <!--Grid row-->
-
-        <!--Grid row-->
-        <div class="row wow fadeIn">
-
-            <!--Grid column-->
-            <div class="col-md-12 mb-4">
-
-                <!--Card-->
-                <div class="card">
-
-                    <!-- Card header -->
-                    <div class="card-header txt1">Camara</div>
-
                     <!--Card content-->
                     <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="a">
 
-                        <div id="divCamera">
+                                <div>
+                                    <button  type="button" class="btn btn-primary btn-sm">Sacar foto</button>
+                                    <button  type="button" class="btn btn-primary btn-sm">Detectar persona</button>
+                                    <button type="button" class="btn btn-primary btn-sm">Detectar enemigo</button>
+                                </div>
+
+                                <div class="text-center">
+                                    <a class="ripple img-fluid">
+                                        <img
+                                                alt="example"
+                                                class="img-fluid rounded"
+                                                src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+                                        />
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane" id="b">
+                                <!--Google map-->
+                                <div id="map-container-google-2" class="z-depth-1-half map-container" >
+                                    <iframe src="https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+                                            style="border:0" allowfullscreen></iframe>
+                                </div>
+
+                                <!--Google Maps-->
+                            </div>
+                            <div class="tab-pane" id="c">
+                                <button  type="button" class="btn btn-primary btn-sm">Sacar foto</button>
+                                <button  type="button" class="btn btn-primary btn-sm">Detectar armas</button>
+
+                                <div class="text-center">
+                                    <a class="ripple img-fluid">
+                                        <img
+                                                alt="example"
+                                                class="img-fluid rounded"
+                                                src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
+                                        />
+                                    </a>
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
@@ -244,78 +268,6 @@
 </main>
 <!--Main layout-->
 </div>
-
-
-<!-- <div class='page-wrap' id='fullpage'>
-
-    <canvas class='bg-particles' id='bg-particles'></canvas>
-
-    <section class="welcome section-content section background-parallax bg-image-1">
-        <div class='overlay'></div>
-        <div class="container" style="padding-right: 0;padding-left: 0;margin-right: 0;margin-left: 0;">
-            <div class="row g-0">
-                <div class="col-lg-6 col-sm-12 bg-dark d-flex flex-column  min-vh-100">
-                    <div class="px-lg-5 pt-lg-4 pl-4 pt-4 w-100">
-                        <a href="../index.html">
-                            <button type="button" class="btn btn-sm btn-secondary">Salir</button>
-                        </a>
-
-                    </div>
-                    <div class=" my-auto px-lg-5 py-lg-4">
-
-                        <div class=" mb-5 d-flex">
-                            <div class="col-8 text-right">
-                                <img src="../images/turtlebot3-sin-fondo.png" style="width: 65%;" />
-                            </div>
-                            <div class="col-4 text-center d-flex align-items-center p-2">
-                                <div class="card text-left pt-2 pl-2 pr-2">
-                                    <p class="text-start fs-6">Estado del Marselobot:</p>
-
-                                    <div class="text-left ">
-                                        <p class="text-start success fs-6 text-success" id="robot_conectado">Robot desconectado</p>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class=" row mb-5 pr-2 pl-2">
-                            <div class="col-9 text-center">
-                                <div class="col-12 pb-2">
-                                    <button type="button" class="btn btn-outline-info" id="btn_adelante">Adelante</button>
-                                </div>
-                                <div class="col-12 d-flex justify-content-center">
-                                    <button type="button" class="btn btn-outline-info" id="btn_izquierda">Izquierda</button>
-                                    <button type="button" class="btn btn-outline-info" id="btn_derecha">Derecha</button>
-                                </div>
-                                <div class="col-12 pt-2 ">
-                                    <button type="button" class="btn btn-outline-info" id="btn_atras">Atrás</button>
-                                </div>
-                                <div class="col-12 pt-4">
-                                    <p class="text-left text-white">Nota: También se pueden utilizar las teclas AWSD para mover el robot.</p>
-                                </div>
-
-                            </div>
-                            <div class="col-3 d-flex flex-column">
-                                <button type="button" class="btn btn-outline-success" id="btn_conectar">Conectar</button>
-                                <button type="button" class="btn btn-outline-danger ml-0 mt-2 text-wrap" id="btn_desconectar">Desconectar</button>
-                                <button type="button" class="btn btn-outline-warning ml-0 mt-2" id="btn_parar">Parar</button>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 d-none d-lg-block">
-
-                </div>
-
-            </div>
-        </div>
-
-    </section>
-</div> -->
 
 <!-- Start Scripts -->
 <script src="../marselotech-web/public/js/jquery-3.2.1.min.js"></script>
@@ -377,6 +329,29 @@
 <!-- End Scripts -->
 
 <script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
+
+<script>
+    function changeTabActive(num){
+        if(num === 1){
+            //ex-with-icons-tab-1
+            document.getElementById("ex-with-icons-tab-1").classList.add('active');
+            document.getElementById("ex-with-icons-tab-2").classList.remove('active');
+            document.getElementById("ex-with-icons-tab-3").classList.remove('active');
+        }else if(num === 2){
+            // ex-with-icons-tab-2
+            //ex-with-icons-tab-1
+            document.getElementById("ex-with-icons-tab-2").classList.add('active');
+            document.getElementById("ex-with-icons-tab-1").classList.remove('active');
+            document.getElementById("ex-with-icons-tab-3").classList.remove('active');
+        }else if(num === 3){
+            // ex-with-icons-tab-3
+            document.getElementById("ex-with-icons-tab-3").classList.add('active');
+            document.getElementById("ex-with-icons-tab-2").classList.remove('active');
+            document.getElementById("ex-with-icons-tab-1").classList.remove('active');
+        }
+    }
+</script>
 
 </body>
 </html>
