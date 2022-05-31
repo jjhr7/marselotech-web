@@ -1,5 +1,5 @@
 <template>
-    <LoaderMarselotech/>
+    <!--<LoaderMarselotech/>-->
     <div class='page-wrap' id='fullpage'>
     <!-- Particles Background -->
         <canvas class='bg-particles' id='bg-particles'></canvas>
@@ -14,14 +14,14 @@
                         </div>-->
                         <div class="align-self-center my-auto w-100 px-lg-5 py-lg-4 p-4">
                             <h1 class="font-weight-bold mb-4 text-light">Bienvenido a Marselotech</h1>
-                            <form @submit.prevent="autenticate" class="mb-5">
+                            <form @submit.prevent="onSubmit" class="mb-5">
                                 <div class="mb-4">
                                     <label for="exampleInputEmail1" class="form-label font-weight-bold text-light">Email</label>
-                                    <input type="email" class="form-control bg-dark-x border-0" id="exampleInputEmail1" placeholder="Ingresa tu email" aria-describedby="emailHelp">
+                                    <input v-model="form.email" type="email" class="form-control bg-dark-x border-0" id="exampleInputEmail1" placeholder="Ingresa tu email" aria-describedby="emailHelp">
                                 </div>
                                 <div class="mb-4">
                                     <label for="exampleInputPassword1" class="form-label font-weight-bold text-light">Código del robot</label>
-                                    <input type="password" class="form-control bg-dark-x border-0 mb-2" placeholder="Ingresa tu código del robot" id="exampleInputPassword1">
+                                    <input v-model="form.robotid" type="password" class="form-control bg-dark-x border-0 mb-2" placeholder="Ingresa tu código del robot" id="exampleInputPassword1">
                                     <a href="" id="emailHelp" class="form-text text-muted text-decoration-none">¿Has olvidado tu código?</a>
                                 </div>
 
@@ -45,17 +45,46 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
 import LoaderMarselotech from '@/components/LoaderMarselotech.vue';
+import {autenticatUser} from '@/firebase'
+import { reactive } from 'vue';
+import { useRouter } from 'vue-router'
+
 
 export default{
     name: "LogiDashboard",
     setup() {
+
+        const router = useRouter();
     
         const autenticate = () => {
             console.log("Dengue");
         };
-        return { autenticate };
+
+        const form = reactive({email:'',robotid:''});
+
+        /*const onSubmit = async () => {
+            await createUser({...form})
+            form.email = ''
+            form.password = ''
+        }*/
+
+        const onSubmit =  async () => {
+
+            await  autenticatUser({...form})
+            form.email = '';
+            form.robotid = '';
+
+            router.push({
+                    name: "dashboard",
+                    params:{
+                      robotid: "xpyBkLbT3T5A2BwvuPSW",
+                    }
+            });
+
+        }
+
+        return { autenticate, form, onSubmit};
     },
     components: { LoaderMarselotech }
 }

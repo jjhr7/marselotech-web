@@ -65,7 +65,7 @@
           <div class="col-sm-12">
             <div class='mg-t'>
               <router-link to="/login">
-                <a class='btn btn-color btn-lg js-to-slide animated onstart' data-animation-delay='300' data-animation='fadeInUp' data-slide='4' href=''>
+                <a class='btn btn-color btn-lg js-to-slide animated onstart btn-login-marselotech' data-animation-delay='300' data-animation='fadeInUp' data-slide='4' href=''>
                 Panel de control
               </a>
               </router-link>
@@ -331,7 +331,7 @@
       <div class='col-sm-12'>
         <div>
           Web desarrollada por <i class="fa fa-heart highlight" aria-hidden="true"></i>
-          <a href='#' >Marselo studios</a>
+          <a href='#' > Marselo studios</a>
         </div>
         <div class='copyright'>© 2022 Todos los derechos reservados</div>
       </div>

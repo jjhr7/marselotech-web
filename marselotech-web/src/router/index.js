@@ -15,7 +15,7 @@ const routes = [
     component: LoginDashboard
   },
   {
-    path: '/dashboard/:userId',
+    path: '/dashboard/:robotid',
     name: 'dashboard',
     component: DashboardMarselotech
   }

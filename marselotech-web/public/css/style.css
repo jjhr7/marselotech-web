@@ -1996,7 +1996,7 @@ input.form-control {
 /*Css añadido por el equipo de desarrollo*/
 .left-vertical-bar{
   border-left: thick solid #00E0FF;
-  height:100%;
+  height:15vh;
 }
 .right-vertical-bar{
   border-right: thick solid #00E0FF;
@@ -2012,5 +2012,8 @@ input.form-control {
 }
 .pading-logo{
   padding-top: 10px;
+}
+.btn-login-marselotech{
+  margin-right: 2vh;
 }
 
