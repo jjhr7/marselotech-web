@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc, getDocs, where, query} from "firebase/firestore";
-//import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {ref, onUnmounted} from 'vue';
 
 // Your web app's Firebase configuration
@@ -22,8 +21,6 @@ const firebaseConfig = {
   
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
 const db = getFirestore(app);
 
 export const createUser = async user => {
@@ -52,68 +49,27 @@ export const useLoadUsers = () => {
         users.value = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
     })
     onUnmounted(close);
-
     return users;
-
 }
 
-/*export const autenticatUser = async user => { 
 
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, user.email, user.password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user)
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        if(errorCode == "auth/wrong-password"){
-            console.log("Datos incorrectos")
-        }else if(errorCode == "auth/user-not-found"){
-            console.log("El usuario introducido no existe");
-        }
-        
-      });
-
-}*/
 
 export const autenticatUser = async user => { 
 
     const q1 = query(collection(db, "users"), where("email", "==", user.email));
     const q2 = query(collection(db,"users"), where("robotid", "==", user.robotid), where("email", "==", user.email));
-
-    
-
     const querySnapshot1 = await getDocs(q1);
     const querySnapshot2 = await getDocs(q2);
 
     if(querySnapshot1.docs.length == 0){
-
-        console.log("No existe un usuario con ese email.");
-        
-
+        return {status: 2, message: "No existe un usuario con ese email."}
     }else{
-
         if(querySnapshot2.docs.length == 0){
-            console.log("Codigo de robot erroneo.");
-            
+            return {status: 1, message: "Datos incorrectos"}
         }else{
-
-            querySnapshot2.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-                return (doc.id, " => ", doc.data());
-
-
-            });
-            
+            return {status: 0, data: querySnapshot2.docs[0].data()};           
         }  
-
     }
-    return("error","=>", 3);
-
 }
 
 

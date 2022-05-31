@@ -347,8 +347,6 @@ import LoaderMarselotech from '@/components/LoaderMarselotech.vue';
 
 export default{
     name: "HomeMarselotech",
-    mounted() {
-    },
     components: { LoaderMarselotech }
 }
 </script>

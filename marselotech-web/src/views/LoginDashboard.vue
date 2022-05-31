@@ -57,34 +57,40 @@ export default{
 
         const router = useRouter();
     
-        const autenticate = () => {
-            console.log("Dengue");
-        };
 
         const form = reactive({email:'',robotid:''});
 
-        /*const onSubmit = async () => {
-            await createUser({...form})
-            form.email = ''
-            form.password = ''
-        }*/
-
         const onSubmit =  async () => {
 
-            await  autenticatUser({...form})
-            form.email = '';
-            form.robotid = '';
+           const responseAuth =  await  autenticatUser({...form});
+           switch(responseAuth.status){
+               case 0:
+                   router.push({
+                        name: "dashboard",
+                        params:{
+                            robotid: responseAuth.data.robotid,
+                        }
+                    });
+                break;
+                
+                case 1:
+                    form.email = '';
+                    form.robotid = '';
+                break;
 
-            router.push({
-                    name: "dashboard",
-                    params:{
-                      robotid: "xpyBkLbT3T5A2BwvuPSW",
-                    }
-            });
+                case 2:
+                    form.email = '';
+                    form.robotid = '';
+                break;
+
+                default:
+                    form.email = '';
+                    form.robotid = '';
+           }
 
         }
 
-        return { autenticate, form, onSubmit};
+        return { form, onSubmit};
     },
     components: { LoaderMarselotech }
 }
