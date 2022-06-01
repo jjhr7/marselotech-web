@@ -258,7 +258,6 @@ document.addEventListener('DOMContentLoaded', event => {
         topic.publish(message)
     }
 
-
     function detectar_caras(){
         connect();
 
@@ -271,8 +270,8 @@ document.addEventListener('DOMContentLoaded', event => {
 
             let service = new ROSLIB.Service({
                 ros: data.ros,
-                name: '/image',
-                serviceType: 'sensor_msgs/msg/Image'
+                name: '/detection',
+                serviceType: 'marselotech_custom_interface/srv/DetectionMsg'
             })
 
             let request = new ROSLIB.ServiceRequest({
@@ -305,8 +304,8 @@ document.addEventListener('DOMContentLoaded', event => {
 
             let service = new ROSLIB.Service({
                 ros: data.ros,
-                name: '/image',
-                serviceType: 'sensor_msgs/msg/Image'
+                name: '/detection',
+                serviceType: 'marselotech_custom_interface/srv/DetectionMsg'
             })
 
             let request = new ROSLIB.ServiceRequest({
@@ -339,8 +338,8 @@ document.addEventListener('DOMContentLoaded', event => {
 
             let service = new ROSLIB.Service({
                 ros: data.ros,
-                name: '/image',
-                serviceType: 'sensor_msgs/msg/Image'
+                name: '/detection',
+                serviceType: 'marselotech_custom_interface/srv/DetectionMsg'
             })
 
             let request = new ROSLIB.ServiceRequest({
