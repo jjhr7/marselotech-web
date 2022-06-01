@@ -85,6 +85,16 @@ document.addEventListener('DOMContentLoaded', event => {
         call_delante_service("derecha")
     });
 
+    // btn tabs
+    document.getElementById("btn_sacar_foto").addEventListener("click", () => {
+        detectar_caras();
+    })
+    document.getElementById("btn_detectar_personas").addEventListener("click", () => {
+        detectar_personas();
+    })
+    document.getElementById("btn_detectar_enemigos").addEventListener("click", () => {
+        detectar_enemigos();
+    })
 
 
     data = {
@@ -93,8 +103,7 @@ document.addEventListener('DOMContentLoaded', event => {
         rosbridge_address: 'ws://127.0.0.1:9090/',
         connected: false,
         // service information
-        service_busy: false,
-        service_response: ''
+        service_busy: false
     }
 
     function connect(){
@@ -105,6 +114,8 @@ document.addEventListener('DOMContentLoaded', event => {
 
         })
 
+        //--------------------------------------------
+        //nos suscribimos al topic del movimiento
         let topic = new ROSLIB.Topic({
             ros: data.ros,
             name: '/odom',
@@ -115,19 +126,20 @@ document.addEventListener('DOMContentLoaded', event => {
             //document.getElementById("pos_x").innerHTML = data.position.x.toFixed(2)
             //document.getElementById("pos_y").innerHTML = data.position.y.toFixed(2)
         })
-        let topic3 = new ROSLIB.Topic({
+        //--------------------------------------------
+        /*let topic3 = new ROSLIB.Topic({
             ros: data.ros,
             name: '/image',
             messageType: 'sensor_msgs/msg/Image'
         })
-        topic3.subscribe();
+        topic3.subscribe();*/
 
         // Define callbacks
         data.ros.on("connection", () => {
             data.connected = true
             console.log("Conexion con ROSBridge correcta")
             document.getElementById("robot_conectado").innerHTML="Robot conectado"
-            setCamera();
+            //setCamera();
         })
         data.ros.on("error", (error) => {
             console.log("Se ha producido algun error mientras se intentaba realizar la conexion")
@@ -247,6 +259,108 @@ document.addEventListener('DOMContentLoaded', event => {
     }
 
 
+    function detectar_caras(){
+        connect();
+
+        try {
+
+            console.log("conectarse a la camara")
+
+            data.service_busy = true
+            data.service_response = ''
+
+            let service = new ROSLIB.Service({
+                ros: data.ros,
+                name: '/image',
+                serviceType: 'sensor_msgs/msg/Image'
+            })
+
+            let request = new ROSLIB.ServiceRequest({
+                type:"caras"
+            })
+
+            service.callService(request, (result) => {
+                data.service_busy = false
+                data.service_response = JSON.stringify(result)
+                console.log("Servicio conectado ---> " )
+                console.log(JSON.stringify(result))
+            }, (error) => {
+                data.service_busy = false
+                console.error("Error en el callback del servicio")
+            })
+        } catch (error) {
+            console.error("Error en el try catch")
+        }
+    }
+
+    function detectar_personas(){
+        connect();
+
+        try {
+
+            console.log("conectarse a la camara")
+
+            data.service_busy = true
+            data.service_response = ''
+
+            let service = new ROSLIB.Service({
+                ros: data.ros,
+                name: '/image',
+                serviceType: 'sensor_msgs/msg/Image'
+            })
+
+            let request = new ROSLIB.ServiceRequest({
+                type:"personas"
+            })
+
+            service.callService(request, (result) => {
+                data.service_busy = false
+                data.service_response = JSON.stringify(result)
+                console.log("Servicio conectado ---> " )
+                console.log(JSON.stringify(result))
+            }, (error) => {
+                data.service_busy = false
+                console.error("Error en el callback del servicio")
+            })
+        } catch (error) {
+            console.error("Error en el try catch")
+        }
+    }
+
+    function detectar_enemigos(){
+        connect();
+
+        try {
+
+            console.log("conectarse a la camara")
+
+            data.service_busy = true
+            data.service_response = ''
+
+            let service = new ROSLIB.Service({
+                ros: data.ros,
+                name: '/image',
+                serviceType: 'sensor_msgs/msg/Image'
+            })
+
+            let request = new ROSLIB.ServiceRequest({
+                type:"color"
+            })
+
+            service.callService(request, (result) => {
+                data.service_busy = false
+                data.service_response = JSON.stringify(result)
+                console.log("Servicio conectado ---> " )
+                console.log(JSON.stringify(result))
+            }, (error) => {
+                data.service_busy = false
+                console.error("Error en el callback del servicio")
+            })
+        } catch (error) {
+            console.error("Error en el try catch")
+        }
+    }
+
     function call_delante_service(valor){
 
         console.log("Estoy dentro de call delaten service")
@@ -277,7 +391,7 @@ document.addEventListener('DOMContentLoaded', event => {
     // funcion para la camara
     // --------------------------------------------------------------------------------------
     function setCamera(){
-        console.log("entra fucion serCamara()")
+        /*console.log("entra fucion serCamara()")
 
         let dengue = new MJPEGCANVAS.Viewer({
             divID: "divCamera", //elemento del html donde mostraremos la cámara
@@ -289,7 +403,7 @@ document.addEventListener('DOMContentLoaded', event => {
             ssl: false,
         })
 
-        console.log(dengue)
+        console.log(dengue)*/
     }
     // --------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------
