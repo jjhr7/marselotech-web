@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', event => {
 
     function call_delante_service(valor){
 
-        console.log("Estoy dentro de call delaten service")
+        console.log("Estoy dentro de call delaten service "+valor)
         data.service_busy = true
         data.service_response = ''
 

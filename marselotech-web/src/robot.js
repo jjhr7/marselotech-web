@@ -140,9 +140,9 @@ export const stop = () => {
     topic.publish(message)
 }
 
-export const call_delante_service = async valor =>{
+export const call_delante_service = (valor) =>{
 
-    console.log("Estoy dentro de call delaten service")
+    console.log("Estoy dentro de call delaten service "+valor)
     data.service_busy = true
     data.service_response = ''
 

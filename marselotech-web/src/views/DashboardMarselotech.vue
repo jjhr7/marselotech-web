@@ -75,20 +75,20 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <button v-on:click="connect" id="btn_conectar" type="button" class="btn btn-success btn-sm">Conectar</button>
-                                    <button id="btn_desconectar" type="button" class="btn btn-danger btn-sm">Desconectar</button>
+                                    <button @click="connectRobot" id="btn_conectar" type="button" class="btn btn-success btn-sm">Conectar</button>
+                                    <button @click="disconnectRobot" id="btn_desconectar" type="button" class="btn btn-danger btn-sm">Desconectar</button>
                                 </div>
 
                                 <div class="col-12">
-                                <button id="btn_adelante" type="button" class="btn btn-primary btn-sm "><i class="fas fa-arrow-up fa-lg " style="margin-left: 0;margin-right: 0;"></i></button>
+                                <button @click="moveRobot(); call_delante_service('delante');" id="btn_adelante" type="button" class="btn btn-primary btn-sm "><i class="fas fa-arrow-up fa-lg " style="margin-left: 0;margin-right: 0;"></i></button>
                                 <br>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button id="btn_izquierda" type="button" class="btn btn-primary btn-sm text-center"> <i class="fas fa-arrow-left fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
-                                    <button id="btn_parar" type="button" class="btn btn-warning btn-sm text-center"> <i class="fas fa-stop fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
-                                    <button id="btn_derecha" type="button" class="btn btn-primary btn-sm text-center"> <i class="fas fa-arrow-right fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
+                                    <button @click="move_izquierdaRobot(); call_delante_service('izquierda');" id="btn_izquierda" type="button" class="btn btn-primary btn-sm text-center"> <i class="fas fa-arrow-left fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
+                                    <button @click="stopRobot(); call_delante_service('parar');" id="btn_parar" type="button" class="btn btn-warning btn-sm text-center"> <i class="fas fa-stop fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
+                                    <button @click="move_derechaRobot(); call_delante_service('derecha');" id="btn_derecha" type="button" class="btn btn-primary btn-sm text-center"> <i class="fas fa-arrow-right fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
                                 </div>
                                 <br>
-                                <button id="btn_atras" type="button" class="btn btn-primary btn-sm"><i class="fas fa-arrow-down fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
+                                <button @click="move_detrasRobot(); call_delante_service('atras');" id="btn_atras" type="button" class="btn btn-primary btn-sm"><i class="fas fa-arrow-down fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
                                 </div>
                             </div>
 
@@ -192,9 +192,10 @@
 </template>
 
 <script>
-import { reactive, onMounted} from 'vue';
+import { reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { connect, disconnect, move, move_detras, move_izquierda, move_derecha, stop, call_delante_service, setCamera} from '@/robot';
+
 
 export default{
     name: 'DashboardMarselotech',
@@ -202,22 +203,9 @@ export default{
 
         onMounted(()=>{
             setTimeout(() => {
-                const jspath = 'http://localhost:8080/js/';
-                var jslibs = 'robot.js';
-                var customLib = document.createElement("script");
-                customLib.setAttribute('src',jspath+jslibs);
-                document.body.appendChild(customLib);
-
+            
 
                 console.log("entro en la pagina")
-
-                document.getElementById("btn_conectar").addEventListener("click", connect)
-                document.getElementById("btn_desconectar").addEventListener("click", disconnect)
-                document.getElementById("btn_adelante").addEventListener("click", move)
-                document.getElementById("btn_parar").addEventListener("click", stop)
-                document.getElementById("btn_derecha").addEventListener("click", move_derecha)
-                document.getElementById("btn_izquierda").addEventListener("click", move_izquierda)
-                document.getElementById("btn_atras").addEventListener("click", move_detras)
 
                 document.getElementById("btn_izquierda").addEventListener("click", () => {
                     call_delante_service("izquierda")
@@ -334,7 +322,7 @@ export default{
 
         const stopRobot = stop;
 
-        /*const call_delante_serviceRobot = await call_delante_service(valor);*/
+        /*const call_delante_serviceRobot = call_delante_service(valor);*/
 
         const setCameraRobot = setCamera;
 
