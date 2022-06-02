@@ -3,11 +3,7 @@ document.addEventListener('DOMContentLoaded', event => {
 
     document.getElementById("btn_conectar").addEventListener("click", connect)
     document.getElementById("btn_desconectar").addEventListener("click", disconnect)
-    document.getElementById("btn_adelante").addEventListener("click", move)
-    document.getElementById("btn_parar").addEventListener("click", stop)
-    document.getElementById("btn_derecha").addEventListener("click", move_derecha)
-    document.getElementById("btn_izquierda").addEventListener("click", move_izquierda)
-    document.getElementById("btn_atras").addEventListener("click", move_detras)
+    
 
     document.getElementById("btn_izquierda").addEventListener("click", () => {
         call_delante_service("izquierda")
@@ -370,7 +366,7 @@ document.addEventListener('DOMContentLoaded', event => {
         let service = new ROSLIB.Service({
             ros: data.ros,
             name: '/movement',
-            serviceType: 'custom_interface/srv/MyMoveMsg'
+            serviceType: 'marselotech_custom_interface/srv/MyMoveMsg'
         })
 
         let request = new ROSLIB.ServiceRequest({
