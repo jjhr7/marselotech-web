@@ -80,15 +80,15 @@
                                 </div>
 
                                 <div class="col-12">
-                                <button @click="moveRobot" id="btn_adelante" type="button" class="btn btn-primary btn-sm "><i class="fas fa-arrow-up fa-lg " style="margin-left: 0;margin-right: 0;"></i></button>
+                                <button @click="call_movement_service_robot('delante')" id="btn_adelante" type="button" class="btn btn-primary btn-sm "><i class="fas fa-arrow-up fa-lg " style="margin-left: 0;margin-right: 0;"></i></button>
                                 <br>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button @click="move_izquierdaRobot(); call_delante_service('izquierda');" id="btn_izquierda" type="button" class="btn btn-primary btn-sm text-center"> <i class="fas fa-arrow-left fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
-                                    <button @click="stopRobot(); call_delante_service('parar');" id="btn_parar" type="button" class="btn btn-warning btn-sm text-center"> <i class="fas fa-stop fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
-                                    <button @click="move_derechaRobot(); call_delante_service('derecha');" id="btn_derecha" type="button" class="btn btn-primary btn-sm text-center"> <i class="fas fa-arrow-right fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
+                                    <button @click="call_movement_service_robot('izquierda')" id="btn_izquierda" type="button" class="btn btn-primary btn-sm text-center"> <i class="fas fa-arrow-left fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
+                                    <button @click="call_movement_service_robot('parar')" id="btn_parar" type="button" class="btn btn-warning btn-sm text-center"> <i class="fas fa-stop fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
+                                    <button @click="call_movement_service_robot('derecha')" id="btn_derecha" type="button" class="btn btn-primary btn-sm text-center"> <i class="fas fa-arrow-right fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
                                 </div>
                                 <br>
-                                <button @click="move_detrasRobot(); call_delante_service('atras');" id="btn_atras" type="button" class="btn btn-primary btn-sm"><i class="fas fa-arrow-down fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
+                                <button @click="call_movement_service_robot('atras')" id="btn_atras" type="button" class="btn btn-primary btn-sm"><i class="fas fa-arrow-down fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
                                 </div>
                             </div>
 
@@ -109,14 +109,14 @@
                                 <!-- Tabs navs -->
                                 <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
                                     <li class="nav-item" role="presentation">
-                                        <a v-on:click="changeTabActive('1')"  class="nav-link active" id="ex-with-icons-tab-1" data-toggle="tab" data-mdb-toggle="tab" href="#a" role="tab"
+                                        <a @click="changeTabActive('1')"  class="nav-link active" id="ex-with-icons-tab-1" data-toggle="tab" data-mdb-toggle="tab" href="#a" role="tab"
                                         aria-controls="ex-with-icons-tabs-1" aria-selected="true"><i class="fas fa-low-vision mr-2"></i>Vigilancia</a>
                                     </li>
-                                    <li v-on:click="changeTabActive('2')"  class="nav-item" role="presentation">
+                                    <li @click="changeTabActive('2')"  class="nav-item" role="presentation">
                                         <a class="nav-link" id="ex-with-icons-tab-2" data-toggle="tab" data-mdb-toggle="tab" href="#b" role="tab"
                                         aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i class="fas fa-map-marker-alt mr-2"></i>Exploración</a>
                                     </li>
-                                    <li v-on:click="changeTabActive('3')"  class="nav-item" role="presentation">
+                                    <li @click="changeTabActive('3')"  class="nav-item" role="presentation">
                                         <a class="nav-link" id="ex-with-icons-tab-3" data-toggle="tab" data-mdb-toggle="tab" href="#c" role="tab"
                                         aria-controls="ex-with-icons-tabs-3" aria-selected="false"><i class="fas fa-luggage-cart mr-2"></i>Soporte</a>
                                     </li>
@@ -130,9 +130,9 @@
                                     <div class="tab-pane active" id="a">
 
                                         <div>
-                                            <button  type="button" class="btn btn-primary btn-sm">Sacar foto</button>
-                                            <button  type="button" class="btn btn-primary btn-sm">Detectar persona</button>
-                                            <button type="button" class="btn btn-primary btn-sm">Detectar enemigo</button>
+                                            <button @click="call_detectar_caras_service" type="button" class="btn btn-primary btn-sm">Reconocimiento facial</button>
+                                            <button @click="call_detectar_personas_service" type="button" class="btn btn-primary btn-sm">Detectar persona</button>
+                                            <button @click="call_detectar_enemigos_service" type="button" class="btn btn-primary btn-sm">Detectar enemigo</button>
                                         </div>
 
                                         <div class="text-center">
@@ -156,7 +156,6 @@
                                         <!--Google Maps-->
                                     </div>
                                     <div class="tab-pane" id="c">
-                                        <button  type="button" class="btn btn-primary btn-sm">Sacar foto</button>
                                         <button  type="button" class="btn btn-primary btn-sm">Detectar armas</button>
 
                                         <div class="text-center">
@@ -194,7 +193,7 @@
 <script>
 import { reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { connect, disconnect, move, move_detras, move_izquierda, move_derecha, stop, call_delante_service, setCamera} from '@/robot';
+import { connect, disconnect, call_delante_service, detectar_caras, detectar_personas, detectar_enemigos} from '@/robot';
 
 
 export default{
@@ -206,25 +205,8 @@ export default{
             
                 console.log("entro en la pagina")
 
-                document.getElementById("btn_izquierda").addEventListener("click", () => {
-                    call_delante_service("izquierda")
-                })
-                document.getElementById("btn_adelante").addEventListener("click", () => {
-                    call_delante_service("delante")
-                })
-                document.getElementById("btn_derecha").addEventListener("click", () => {
-                    call_delante_service("derecha")
-                })
-                document.getElementById("btn_atras").addEventListener("click", () => {
-                    call_delante_service("atras")
-                })
-                document.getElementById("btn_parar").addEventListener("click", () => {
-                    call_delante_service("parar")
-                })
-
-
                 //w
-                document.addEventListener("keydown", (w) => {
+               /* document.addEventListener("keydown", (w) => {
                     call_delante_service("delante")
                 })
 
@@ -281,12 +263,13 @@ export default{
                 document.addEventListener('beforeinput', (d) => {
                     logMessage(`Key "${d.data}" about to be input  [event: beforeinput]`);
                     call_delante_service("derecha")
-                });
+                });*/
 
             },1500);
         });
         
         const router = useRouter();
+
         const changeTabActive = (num) =>{
             document.getElementById("ex-with-icons-tab-1").classList.remove('active');
             if(num === 1){
@@ -312,21 +295,21 @@ export default{
 
         const disconnectRobot = disconnect;
 
-        const moveRobot = move;
+        const call_detectar_caras_service  = detectar_caras;
 
-        const move_detrasRobot = move_detras;
+        const call_detectar_personas_service = detectar_personas;
 
-        const move_izquierdaRobot = move_izquierda;
+        const call_detectar_enemigos_service = detectar_enemigos;
 
-        const move_derechaRobot = move_derecha;
+        const call_movement_service_robot = async (valor) => {
+           await call_delante_service(valor);
+        }
 
-        const stopRobot = stop;
 
-        /*const call_delante_serviceRobot = call_delante_service(valor);*/
 
-        const setCameraRobot = setCamera;
+        
 
-        return { changeTabActive, connectRobot, disconnectRobot, moveRobot, move_detrasRobot, move_izquierdaRobot, move_derechaRobot, stopRobot, /*call_delante_serviceRobot,*/ setCameraRobot};
+        return { changeTabActive, connectRobot, disconnectRobot, call_movement_service_robot, call_detectar_caras_service, call_detectar_personas_service, call_detectar_enemigos_service};
     }
 };
 

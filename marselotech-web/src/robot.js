@@ -1,3 +1,5 @@
+import { async } from "@firebase/util";
+
 const data = {
     // ros connection
     ros: null,
@@ -14,40 +16,40 @@ export const  connect = () => {
     data.ros = new ROSLIB.Ros({
         url: data.rosbridge_address
 
-    })
+    });
 
+    //--------------------------------------------
+    //nos suscribimos al topic del movimiento
     let topic = new ROSLIB.Topic({
         ros: data.ros,
         name: '/odom',
         messageType: 'nav_msgs/msg/Odometry'
-    })
+    });
     topic.subscribe((message) => {
         data.position = message.pose.pose.position
         //document.getElementById("pos_x").innerHTML = data.position.x.toFixed(2)
         //document.getElementById("pos_y").innerHTML = data.position.y.toFixed(2)
-    })
-    let topic3 = new ROSLIB.Topic({
-        ros: data.ros,
-        name: '/image',
-        messageType: 'sensor_msgs/msg/Image'
-    })
-    topic3.subscribe();
+    });
+    //--------------------------------------------
+
 
     // Define callbacks
     data.ros.on("connection", () => {
         data.connected = true
         console.log("Conexion con ROSBridge correcta")
         document.getElementById("robot_conectado").innerHTML="Robot conectado"
-        setCamera();
-    })
+        //setCamera();
+    });
+
     data.ros.on("error", (error) => {
         console.log("Se ha producido algun error mientras se intentaba realizar la conexion")
         console.log(error)
-    })
+    });
+
     data.ros.on("close", () => {
         data.connected = false
         console.log("Conexion con ROSBridge cerrada")
-    })
+    });
 }
 
 export const disconnect= () => {
@@ -60,87 +62,9 @@ export const disconnect= () => {
     document.getElementById("divCamera").innerHTML = ""
 }
 
-export const move = () => {
 
-        let topic = new ROSLIB.Topic({
-            ros: data.ros,
-            name: '/cmd_vel',
-            messageType: 'geometry_msgs/msg/Twist'
-        })
 
-        let message = new ROSLIB.Message({
-            linear: {x: 0.1, y: 0, z: 0, },
-            angular: {x: 0, y: 0, z: 0},
-        })
-
-        topic.publish(message)
-
-}
-
-export const move_detras = () => {
-
-        let topic = new ROSLIB.Topic({
-            ros: data.ros,
-            name: '/cmd_vel',
-            messageType: 'geometry_msgs/msg/Twist'
-        })
-
-        let message = new ROSLIB.Message({
-            linear: {x: -0.1, y: 0, z: 0, },
-            angular: {x: 0, y: 0, z: 0},
-        })
-
-        topic.publish(message)
-}
-
-export const move_izquierda = () => {
-
-    let topic = new ROSLIB.Topic({
-        ros: data.ros,
-        name: '/cmd_vel',
-        messageType: 'geometry_msgs/msg/Twist'
-    })
-
-    let message = new ROSLIB.Message({
-        linear: {x: 0.1, y: 0, z: 0.1, },
-        angular: {x: 0, y: 0, z: 0},
-    })
-
-    topic.publish(message)
-
-}
-
-export const move_derecha = () => {
-
-    let topic = new ROSLIB.Topic({
-        ros: data.ros,
-        name: '/cmd_vel',
-        messageType: 'geometry_msgs/msg/Twist'
-    })
-
-    let message = new ROSLIB.Message({
-        linear: {x: 0.1, y: 0, z: -0.1, },
-        angular: {x: 0, y: 0, z: 0},
-    })
-
-    topic.publish(message)
-
-}
-
-export const stop = () => {
-    let topic = new ROSLIB.Topic({
-        ros: data.ros,
-        name: '/cmd_vel',
-        messageType: 'geometry_msgs/msg/Twist'
-    })
-    let message = new ROSLIB.Message({
-        linear: {x: 0, y: 0, z: 0, },
-        angular: {x: 0, y: 0, z: 0, },
-    })
-    topic.publish(message)
-}
-
-export const call_delante_service = (valor) =>{
+export const call_delante_service = async valor =>{
 
     console.log("Estoy dentro de call delaten service "+valor)
     data.service_busy = true
@@ -150,7 +74,7 @@ export const call_delante_service = (valor) =>{
     let service = new ROSLIB.Service({
         ros: data.ros,
         name: '/movement',
-        serviceType: 'custom_interface/srv/MyMoveMsg'
+        serviceType: 'marselotech_custom_interface/srv/MyMoveMsg'
     })
 
     let request = new ROSLIB.ServiceRequest({
@@ -166,18 +90,105 @@ export const call_delante_service = (valor) =>{
     })
 }
 
-export const setCamera = () => {
-    console.log("entra fucion serCamara()")
+export const detectar_caras = () => {
 
-    let dengue = new MJPEGCANVAS.Viewer({
-        divID: "divCamera", //elemento del html donde mostraremos la cámara
-        host: "ws:127.0.0.1", //dirección del servidor de vídeo
-        port: "9090",
-        width: 320, //no pongas un tamaño mucho mayor porque puede dar error
-        height: 240,
-        topic: "/image",
-        ssl: false,
-    })
+    try {
 
-    console.log(dengue)
+        console.log("conectarse a la camara")
+
+        data.service_busy = true
+        data.service_response = ''
+
+        let service = new ROSLIB.Service({
+            ros: data.ros,
+            name: '/detection',
+            serviceType: 'marselotech_custom_interface/srv/DetectionMsg'
+        })
+
+        let request = new ROSLIB.ServiceRequest({
+            type: "caras"
+        })
+
+        service.callService(request, (result) => {
+            data.service_busy = false
+            data.service_response = JSON.stringify(result)
+            console.log("Servicio conectado ---> " )
+            console.log(JSON.stringify(result))
+        }, (error) => {
+            data.service_busy = false
+            console.error("Error en el callback del servicio")
+        })
+    } catch (error) {
+        console.error("Error en el try catch")
+    }
+
 }
+
+export const detectar_personas = () => {
+    
+    try {
+
+        console.log("conectarse a la camara")
+
+        data.service_busy = true
+        data.service_response = ''
+
+        let service = new ROSLIB.Service({
+            ros: data.ros,
+            name: '/detection',
+            serviceType: 'marselotech_custom_interface/srv/DetectionMsg'
+        })
+
+        let request = new ROSLIB.ServiceRequest({
+            type: "personas"
+        })
+
+        service.callService(request, (result) => {
+            data.service_busy = false
+            data.service_response = JSON.stringify(result)
+            console.log("Servicio conectado ---> " )
+            console.log(JSON.stringify(result))
+        }, (error) => {
+            data.service_busy = false
+            console.error("Error en el callback del servicio")
+        })
+    } catch (error) {
+        console.error("Error en el try catch")
+    }
+
+}
+
+export const detectar_enemigos = () => {
+
+    try {
+
+        console.log("conectarse a la camara")
+
+        data.service_busy = true
+        data.service_response = ''
+
+        let service = new ROSLIB.Service({
+            ros: data.ros,
+            name: '/detection',
+            serviceType: 'marselotech_custom_interface/srv/DetectionMsg'
+        })
+
+        let request = new ROSLIB.ServiceRequest({
+            type: "color"
+        })
+
+        service.callService(request, (result) => {
+            data.service_busy = false
+            data.service_response = JSON.stringify(result)
+            console.log("Servicio conectado ---> " )
+            console.log(JSON.stringify(result))
+        }, (error) => {
+            console.log(request)
+            data.service_busy = false
+            console.error("Error en el callback del servicio")
+        })
+    } catch (error) {
+        console.error("Error en el try catch")
+    }
+}
+
