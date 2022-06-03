@@ -83,13 +83,13 @@ document.addEventListener('DOMContentLoaded', event => {
 
     // btn tabs
     document.getElementById("btn_sacar_foto").addEventListener("click", () => {
-        detectar_caras();
+        detectar_caras("caras");
     })
     document.getElementById("btn_detectar_personas").addEventListener("click", () => {
-        detectar_personas();
+        detectar_personas("personas");
     })
     document.getElementById("btn_detectar_enemigos").addEventListener("click", () => {
-        detectar_enemigos();
+        detectar_enemigos("color");
     })
 
 
@@ -123,12 +123,7 @@ document.addEventListener('DOMContentLoaded', event => {
             //document.getElementById("pos_y").innerHTML = data.position.y.toFixed(2)
         })
         //--------------------------------------------
-        /*let topic3 = new ROSLIB.Topic({
-            ros: data.ros,
-            name: '/image',
-            messageType: 'sensor_msgs/msg/Image'
-        })
-        topic3.subscribe();*/
+    
 
         // Define callbacks
         data.ros.on("connection", () => {
@@ -271,7 +266,7 @@ document.addEventListener('DOMContentLoaded', event => {
             })
 
             let request = new ROSLIB.ServiceRequest({
-                type:"caras"
+                type: valor
             })
 
             service.callService(request, (result) => {
@@ -286,10 +281,44 @@ document.addEventListener('DOMContentLoaded', event => {
         } catch (error) {
             console.error("Error en el try catch")
         }
+
     }
 
-    function detectar_personas(){
-        connect();
+    function detectar_personas(valor){
+    
+        try {
+
+            console.log("conectarse a la camara")
+
+            data.service_busy = true
+            data.service_response = ''
+
+            let service = new ROSLIB.Service({
+                ros: data.ros,
+                name: '/detection',
+                serviceType: 'marselotech_custom_interface/srv/DetectionMsg'
+            })
+
+            let request = new ROSLIB.ServiceRequest({
+                type: valor
+            })
+
+            service.callService(request, (result) => {
+                data.service_busy = false
+                data.service_response = JSON.stringify(result)
+                console.log("Servicio conectado ---> " )
+                console.log(JSON.stringify(result))
+            }, (error) => {
+                data.service_busy = false
+                console.error("Error en el callback del servicio")
+            })
+        } catch (error) {
+            console.error("Error en el try catch")
+        }
+
+    }
+
+    function detectar_enemigos(valor){
 
         try {
 
@@ -305,7 +334,7 @@ document.addEventListener('DOMContentLoaded', event => {
             })
 
             let request = new ROSLIB.ServiceRequest({
-                type:"personas"
+                type: valor
             })
 
             service.callService(request, (result) => {
@@ -314,40 +343,7 @@ document.addEventListener('DOMContentLoaded', event => {
                 console.log("Servicio conectado ---> " )
                 console.log(JSON.stringify(result))
             }, (error) => {
-                data.service_busy = false
-                console.error("Error en el callback del servicio")
-            })
-        } catch (error) {
-            console.error("Error en el try catch")
-        }
-    }
-
-    function detectar_enemigos(){
-        connect();
-
-        try {
-
-            console.log("conectarse a la camara")
-
-            data.service_busy = true
-            data.service_response = ''
-
-            let service = new ROSLIB.Service({
-                ros: data.ros,
-                name: '/detection',
-                serviceType: 'marselotech_custom_interface/srv/DetectionMsg'
-            })
-
-            let request = new ROSLIB.ServiceRequest({
-                type:"color"
-            })
-
-            service.callService(request, (result) => {
-                data.service_busy = false
-                data.service_response = JSON.stringify(result)
-                console.log("Servicio conectado ---> " )
-                console.log(JSON.stringify(result))
-            }, (error) => {
+                console.log(request)
                 data.service_busy = false
                 console.error("Error en el callback del servicio")
             })

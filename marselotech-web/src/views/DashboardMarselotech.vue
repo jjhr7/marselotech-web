@@ -80,7 +80,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                <button @click="moveRobot(); call_delante_service('delante');" id="btn_adelante" type="button" class="btn btn-primary btn-sm "><i class="fas fa-arrow-up fa-lg " style="margin-left: 0;margin-right: 0;"></i></button>
+                                <button @click="moveRobot" id="btn_adelante" type="button" class="btn btn-primary btn-sm "><i class="fas fa-arrow-up fa-lg " style="margin-left: 0;margin-right: 0;"></i></button>
                                 <br>
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <button @click="move_izquierdaRobot(); call_delante_service('izquierda');" id="btn_izquierda" type="button" class="btn btn-primary btn-sm text-center"> <i class="fas fa-arrow-left fa-lg" style="margin-left: 0;margin-right: 0;"></i></button>
@@ -204,7 +204,6 @@ export default{
         onMounted(()=>{
             setTimeout(() => {
             
-
                 console.log("entro en la pagina")
 
                 document.getElementById("btn_izquierda").addEventListener("click", () => {
@@ -222,6 +221,7 @@ export default{
                 document.getElementById("btn_parar").addEventListener("click", () => {
                     call_delante_service("parar")
                 })
+
 
                 //w
                 document.addEventListener("keydown", (w) => {
