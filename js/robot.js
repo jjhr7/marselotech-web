@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', event => {
         let x = document.getElementById("x_input").value;
         let y = document.getElementById("y_input").value;
         console.log(x + " asdad  adsa "+ y);
-        enviar_coordenada(x,y);
+        enviar_coordenada(x.toString(),y.toString());
     })
 
 
