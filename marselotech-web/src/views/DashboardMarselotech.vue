@@ -193,6 +193,7 @@
 <script>
 import { reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import {getLastImage} from '@/firebase'
 import { connect, disconnect, call_delante_service, detectar_caras, detectar_personas, detectar_enemigos} from '@/robot';
 
 
@@ -202,67 +203,48 @@ export default{
 
         onMounted(()=>{
             setTimeout(() => {
-            
-                console.log("entro en la pagina")
 
                 //w
                /* document.addEventListener("keydown", (w) => {
-                    call_delante_service("delante")
+                    call_movement_service_robot('delante');
                 })
 
                 document.addEventListener('input', (w) => {
                     logMessage(`Key "${w.data}" input  [event: input]`);
-                    call_delante_service("delante")
+                    call_movement_service_robot('delante');
                 });
 
-                document.addEventListener('beforeinput', (a) => {
-                    logMessage(`Key "${a.data}" about to be input  [event: beforeinput]`);
-                    call_delante_service("izquierda")
-                });
 
                 //a
                 document.addEventListener("keydown", (a) => {
-                    call_delante_service("izquierda")
+                    call_movement_service_robot('izquierda');
                 })
 
                 document.addEventListener('input', (a) => {
                     logMessage(`Key "${a.data}" input  [event: input]`);
-                    call_delante_service("izquierda")
+                    call_movement_service_robot('izquierda');
                 });
 
-                document.addEventListener('beforeinput', (a) => {
-                    logMessage(`Key "${a.data}" about to be input  [event: beforeinput]`);
-                    call_delante_service("izquierda")
-                });
 
                 //s
                 document.addEventListener("keydown", (s) => {
-                    call_delante_service("atras")
+                    call_movement_service_robot('atras')
                 })
 
                 document.addEventListener('input', (s) => {
                     logMessage(`Key "${s.data}" input  [event: input]`);
-                    call_delante_service("atras")
+                    call_movement_service_robot('atras')
                 });
 
-                document.addEventListener('beforeinput', (s) => {
-                    logMessage(`Key "${s.data}" about to be input  [event: beforeinput]`);
-                    call_delante_service("atras")
-                });
 
                 //d
                 document.addEventListener("keydown", (d) => {
-                    call_delante_service("derecha")
+                    call_movement_service_robot('derecha')
                 })
 
                 document.addEventListener('input', (d) => {
                     logMessage(`Key "${d.data}" input  [event: input]`);
-                    call_delante_service("derecha")
-                });
-
-                document.addEventListener('beforeinput', (d) => {
-                    logMessage(`Key "${d.data}" about to be input  [event: beforeinput]`);
-                    call_delante_service("derecha")
+                    call_movement_service_robot('derecha')
                 });*/
 
             },1500);
@@ -291,6 +273,10 @@ export default{
             }
         }
 
+        const getLastImageFromFirebase = async (id) => {
+            await getLastImage(id);
+        }
+
         const  connectRobot = connect;
 
         const disconnectRobot = disconnect;
@@ -305,11 +291,8 @@ export default{
            await call_delante_service(valor);
         }
 
-
-
         
-
-        return { changeTabActive, connectRobot, disconnectRobot, call_movement_service_robot, call_detectar_caras_service, call_detectar_personas_service, call_detectar_enemigos_service};
+        return { getLastImageFromFirebase, changeTabActive, connectRobot, disconnectRobot, call_movement_service_robot, call_detectar_caras_service, call_detectar_personas_service, call_detectar_enemigos_service};
     }
 };
 

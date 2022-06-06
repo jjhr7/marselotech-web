@@ -34,11 +34,14 @@ export const createUser = async user => {
 
 }
 
-export const getUser = async id => {
+export const getLastImage = async id => {
 
-    const querySnapshot = await getDocs(collection(db, "users"));
+    const q = query(collection(db, "images"), where("robotid","==",id));
+
+    const querySnapshot = await getDocs(q);
+
     querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
+        console.log(doc.data().img);
     });
 
 }
@@ -71,6 +74,7 @@ export const autenticatUser = async user => {
         }  
     }
 }
+
 
 
 

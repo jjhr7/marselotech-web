@@ -59,7 +59,7 @@ export const disconnect= () => {
     document.getElementById("robot_conectado").innerHTML="Robot desconctado"
 
     // quitamos camara
-    document.getElementById("divCamera").innerHTML = ""
+    //document.getElementById("divCamera").innerHTML = ""
 }
 
 
