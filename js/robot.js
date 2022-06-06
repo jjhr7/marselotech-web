@@ -97,6 +97,14 @@ document.addEventListener('DOMContentLoaded', event => {
         detectar_armas();
     })
 
+    //novegacion
+    document.getElementById("btn_enviar_coordenada").addEventListener("click", () => {
+        let x = document.getElementById("x_input").value;
+        let y = document.getElementById("y_input").value;
+        console.log(x + " asdad  adsa "+ y);
+        enviar_coordenada(x,y);
+    })
+
 
     data = {
         // ros connection
@@ -375,6 +383,40 @@ document.addEventListener('DOMContentLoaded', event => {
 
             let request = new ROSLIB.ServiceRequest({
                 type: "armas"
+            })
+
+            service.callService(request, (result) => {
+                data.service_busy = false
+                data.service_response = JSON.stringify(result)
+                console.log("Servicio conectado ---> " )
+                console.log(JSON.stringify(result))
+            }, (error) => {
+                console.log(request)
+                data.service_busy = false
+                console.error("Error en el callback del servicio")
+            })
+        } catch (error) {
+            console.error("Error en el try catch")
+        }
+    }
+
+    function enviar_coordenada(x,y){
+
+        try {
+            console.log("conectarse a la camara")
+
+            data.service_busy = true
+            data.service_response = ''
+
+            let service = new ROSLIB.Service({
+                ros: data.ros,
+                name: '/navigate',
+                serviceType: 'marselotech_custom_interface/srv/NaveToPoseMsg'
+            })
+
+            let request = new ROSLIB.ServiceRequest({
+                x: x,
+                y: y
             })
 
             service.callService(request, (result) => {
