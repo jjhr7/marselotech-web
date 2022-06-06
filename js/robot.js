@@ -119,8 +119,8 @@ document.addEventListener('DOMContentLoaded', event => {
         })
         topic.subscribe((message) => {
             data.position = message.pose.pose.position
-            //document.getElementById("pos_x").innerHTML = data.position.x.toFixed(2)
-            //document.getElementById("pos_y").innerHTML = data.position.y.toFixed(2)
+            document.getElementById("pos_x").innerHTML = data.position.x.toFixed(2)
+            document.getElementById("pos_y").innerHTML = data.position.y.toFixed(2)
         })
         //--------------------------------------------
     
