@@ -137,7 +137,7 @@
 
                                         <div class="text-center">
                                             <a class="ripple img-fluid">
-                                                <img
+                                                <img id="tabApoyo"
                                                         alt="example"
                                                         class="img-fluid rounded"
                                                         src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
@@ -147,20 +147,39 @@
 
                                     </div>
                                     <div class="tab-pane" id="b">
-                                        <!--Google map-->
-                                        <div id="map-container-google-2" class="z-depth-1-half map-container" >
-                                            <iframe src="https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
-                                                    style="border:0" allowfullscreen></iframe>
-                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-outline input-group-sm">
+                                                    <label class="form-label txt1" >Coordenadas del robot</label>
+                                                    <div class="d-flex">
+                                                        <p class="txt1">X:</p>
+                                                        <p class="txt1 pl-2" id="pos_x">Sin conexión</p>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <p class="txt1">Y:</p>
+                                                        <p class="txt1 pl-2" id="pos_y">Sin conexión</p>
 
-                                        <!--Google Maps-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-outline input-group-sm">
+                                                    <label class="form-label txt1" >Nuevas coordenadas</label>
+                                                    <input type="number" id="x_input"  placeholder="x" class="form-control"/>
+                                                    <input type="number" id="y_input"  placeholder="y" class="form-control mt-3" />
+                                                    <div class="text-right">
+                                                        <button :click="call_enviar_cords" id="btn_enviar_coordenada"  type="button" class="btn btn-primary btn-sm">Enviar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="tab-pane" id="c">
-                                        <button  type="button" class="btn btn-primary btn-sm">Detectar armas</button>
+                                        <button :click="call_detectar_armas_robot" type="button" class="btn btn-primary btn-sm">Detectar armas</button>
 
                                         <div class="text-center">
                                             <a class="ripple img-fluid">
-                                                <img
+                                                <img   id="tabGuns"
                                                         alt="example"
                                                         class="img-fluid rounded"
                                                         src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp"
@@ -194,7 +213,7 @@
 import { reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import {getLastImage} from '@/firebase'
-import { connect, disconnect, call_delante_service, detectar_caras, detectar_personas, detectar_enemigos} from '@/robot';
+import { connect, disconnect, call_delante_service, detectar_caras, detectar_personas, detectar_enemigos, detectar_armas, enviar_coordenada} from '@/robot';
 
 
 export default{
@@ -246,6 +265,7 @@ export default{
                     logMessage(`Key "${d.data}" input  [event: input]`);
                     call_movement_service_robot('derecha')
                 });*/
+                
 
             },1500);
         });
@@ -273,26 +293,66 @@ export default{
             }
         }
 
-        const getLastImageFromFirebase = async (id) => {
-            await getLastImage(id);
+        const getLastImageFromFirebase = async (imgType) => {
+            /*caras, persona, color, arma*/
+           const imgUrl = await getLastImage(imgType);
+           return imgUrl;
         }
+
+        const call_getLastImg = async (imgTypetxt,idComponent) => {
+
+            var curretnUrl = new URL(window.location.href);
+            let ulrtxt = curretnUrl.toString();
+            let urlSplit = ulrtxt.split("/");
+            let urlLength = urlSplit.length;
+            let robotid = urlSplit[urlLength-1];
+            let imgType = {idRobot: robotid, type: imgTypetxt}
+            let imageWeb = document.getElementById(idComponent);
+            const urlimgage = await getLastImageFromFirebase(imgType);
+            console.log(urlimgage);
+            imageWeb.src = urlimgage;
+
+        }
+
 
         const  connectRobot = connect;
 
         const disconnectRobot = disconnect;
 
-        const call_detectar_caras_service  = detectar_caras;
+        const call_detectar_caras_service  = () =>{
+            call_getLastImg("caras","tabApoyo");
+            detectar_caras();
+        };
 
-        const call_detectar_personas_service = detectar_personas;
+        const call_detectar_personas_service = () => {
+            call_getLastImg("persona","tabApoyo")
+            detectar_personas();
+        };
 
-        const call_detectar_enemigos_service = detectar_enemigos;
+        const call_detectar_enemigos_service = () =>{
+            call_getLastImg("color","tabApoyo");
+            detectar_enemigos();
+        };
+
+        const call_detectar_armas_robot = () => {
+            call_getLastImg("arma","tabGuns");
+            detectar_armas();
+        };
 
         const call_movement_service_robot = async (valor) => {
            await call_delante_service(valor);
-        }
+        };
+
+        const call_enviar_cords = async () => {
+            let x = document.getElementById("x_input").value;
+            let y = document.getElementById("y_input").value;
+            await enviar_coordenada(x,y);
+
+        };
 
         
-        return { getLastImageFromFirebase, changeTabActive, connectRobot, disconnectRobot, call_movement_service_robot, call_detectar_caras_service, call_detectar_personas_service, call_detectar_enemigos_service};
+        
+        return { call_getLastImg, changeTabActive, connectRobot, disconnectRobot, call_movement_service_robot, call_detectar_caras_service, call_detectar_personas_service, call_detectar_enemigos_service, call_detectar_armas_robot, call_enviar_cords};
     }
 };
 

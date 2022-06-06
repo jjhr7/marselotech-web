@@ -34,15 +34,16 @@ export const createUser = async user => {
 
 }
 
-export const getLastImage = async id => {
+export const getLastImage = async imgType => {
 
-    const q = query(collection(db, "images"), where("robotid","==",id));
+    console.log(imgType.idRobot,imgType.type);
+
+    const q = query(collection(db, "images"), where("robotid","==",imgType.idRobot), where("type", "==", imgType.type));
 
     const querySnapshot = await getDocs(q);
+    console.log(querySnapshot.docs[querySnapshot.docs.length-1].data().img);
 
-    querySnapshot.forEach((doc) => {
-        console.log(doc.data().img);
-    });
+    return querySnapshot.docs[querySnapshot.docs.length-1].data().img;
 
 }
 
