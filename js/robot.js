@@ -92,6 +92,11 @@ document.addEventListener('DOMContentLoaded', event => {
         detectar_enemigos("color");
     })
 
+    //
+    document.getElementById("btn_detectar_armas").addEventListener("click", () => {
+        detectar_armas();
+    })
+
 
     data = {
         // ros connection
@@ -335,6 +340,41 @@ document.addEventListener('DOMContentLoaded', event => {
 
             let request = new ROSLIB.ServiceRequest({
                 type: valor
+            })
+
+            service.callService(request, (result) => {
+                data.service_busy = false
+                data.service_response = JSON.stringify(result)
+                console.log("Servicio conectado ---> " )
+                console.log(JSON.stringify(result))
+            }, (error) => {
+                console.log(request)
+                data.service_busy = false
+                console.error("Error en el callback del servicio")
+            })
+        } catch (error) {
+            console.error("Error en el try catch")
+        }
+    }
+
+
+    function detectar_armas(){
+
+        try {
+
+            console.log("conectarse a la camara")
+
+            data.service_busy = true
+            data.service_response = ''
+
+            let service = new ROSLIB.Service({
+                ros: data.ros,
+                name: '/detection',
+                serviceType: 'marselotech_custom_interface/srv/DetectionMsg'
+            })
+
+            let request = new ROSLIB.ServiceRequest({
+                type: "armas"
             })
 
             service.callService(request, (result) => {
