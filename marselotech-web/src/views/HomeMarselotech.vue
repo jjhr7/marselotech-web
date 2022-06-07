@@ -248,36 +248,109 @@
   </section>
   <!-- End watch mode -->
 
-  <!-- Start Who we are -->
-  <section class='modo-soporte section background-parallax bg-image-2' id="sobre-nosotros">
+
+  <!-- Start watch mode -->
+  <section class='aboutus section background-parallax bg-image-2' id="sobre-nosotros">
     <div class='overlay'></div>
     <div class='container'>
-      <div class='row'>
-        <div class='col-sm-12'>
-          <div class='hero-content'>
-            <h1 class='section-title text-center animated' data-animation-delay='0' data-animation='fadeInUp'>
-              Acerca de <strong class="highlight">nosotros</strong>
-            </h1>
+        <div class='row'>
+          <div class='col-sm-12'>
+            <div class='hero-content'>
+              <h1 class='section-title text-center animated' data-animation-delay='0' data-animation='fadeInUp'>
+                Acerca de <strong class="highlight">nosotros</strong>
+              </h1>
+            </div>
+            <div class='col-sm-12 center-block'>
+                <div class='col-sm-offset-4 col-sm-4 mg-b'>
+                  <p class='animated text-center' data-animation-delay='100' data-animation='fadeInUp'>
+                    Somos un grupo de estudiantes del grado de Tecnologías Interactivas de la Universidad Politécnica
+                    de Valencia. Hemos realizado proyectos previos tanto de web xomo de app, así como el desatollo de un
+                    videojuego y dispositivos basados en IOT.
+                  </p>
+                </div>
+            </div>
           </div>
-          <div class='col-sm-12 center-block'>
-              <div class='col-sm-offset-4 col-sm-4 mg-b'>
-                <p class='animated text-center' data-animation-delay='100' data-animation='fadeInUp'>
-                  Somos un grupo de estudiantes del grado de Tecnologías Interactivas de la Universidad Politécnica
-                  de Valencia. Hemos realizado proyectos previos tanto de web xomo de app, así como el desatollo de un
-                  videojuego y dispositivos basados en IOT.
-                </p>
-              </div>
+          <div class='col-sm-12 text-center'>
+            <img src="images/marselo-team.jpg" width="927px" height="auto" alt="Foto de los integrantes de marselo team">
           </div>
         </div>
-        <div class='col-sm-12 text-center'>
-          <img src="images/marselo-team.jpg" width="927px" height="auto" alt="Foto de los integrantes de marselo team">
-         </div>
-      </div>
-
     </div>
   </section>
-  <!-- End who we are -->
+  <!-- End watch mode -->
 
+<!-- colaboradores -->
+  <section class='colaboradores section background-parallax section-no-space bg-image-2' id="collaborators">
+    <div class='overlay'></div>
+    <div class="container">
+      <div class="row align-items-end" style="margin-right: 0.5rem" id="caja-colab-texto">
+        <div class="col-md-5">
+          <div class="faq-img text-right">
+            <img src="images/logos-icons.png" alt="img" class="img">
+          </div>
+        </div>
+        <div class="col-md-offset-2 col-md-5">
+          <div class="section-title left-align mb-50">
+            <h2>Nuestros colaboradoes</h2>
+          </div>
+          <div class="faq-wrap">
+            <div class="accordion" id="accordionExample">
+              <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h2 class="mb-0">
+                    <button class="faq-btn btn btn-outline waves-effect waves-light" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                      ANGLETRONICS
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                     data-parent="#accordionExample">
+                  <div class="card-body">
+                    Sus miembros también colaboran en un proyecto de investigación dedicado a la inteligencia artificial con
+                    robots con la finalidad de aportar buenas ideas y ayuda a nuestra sociedad.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h2 class="mb-0">
+                    <button class="faq-btn btn btn-outline waves-effect waves-light collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                      SBOCK
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Sus miembros también colaboran en un proyecto de investigación dedicado a la inteligencia artificial con
+                    robots con la finalidad de aportar buenas ideas y ayuda a nuestra sociedad.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="headingTwo">
+                  <h2 class="mb-0">
+                    <button class="faq-btn btn btn-outline waves-effect waves-light collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      YSOLVE
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Sus miembros también colaboran en un proyecto de investigación dedicado a la inteligencia artificial con
+                    robots con la finalidad de aportar buenas ideas y ayuda a nuestra sociedad.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!--End colaborators-->
 
   <!-- Start Contacts -->
   <section class='section-content contacts section background-parallax bg-image-4'>

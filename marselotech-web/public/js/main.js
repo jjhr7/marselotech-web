@@ -173,7 +173,7 @@
 
     var prevIndex = 0;
     $('#fullpage').fullpage({
-        anchors: ['inicio', 'modos', 'modo-soporte', 'modo-exploración', 'modo-vigilancia', 'contacto'],
+        anchors: ['inicio', 'modos', 'modo-soporte', 'modo-exploración', 'modo-vigilancia', 'aboutus','colaboradores' ,'contacto'],
         menu: '#header-nav',
         scrollingSpeed: 800,
         autoScrolling: true,
