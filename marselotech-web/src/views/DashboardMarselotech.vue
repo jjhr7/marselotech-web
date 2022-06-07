@@ -223,48 +223,6 @@ export default{
         onMounted(()=>{
             setTimeout(() => {
 
-                //w
-               /* document.addEventListener("keydown", (w) => {
-                    call_movement_service_robot('delante');
-                })
-
-                document.addEventListener('input', (w) => {
-                    logMessage(`Key "${w.data}" input  [event: input]`);
-                    call_movement_service_robot('delante');
-                });
-
-
-                //a
-                document.addEventListener("keydown", (a) => {
-                    call_movement_service_robot('izquierda');
-                })
-
-                document.addEventListener('input', (a) => {
-                    logMessage(`Key "${a.data}" input  [event: input]`);
-                    call_movement_service_robot('izquierda');
-                });
-
-
-                //s
-                document.addEventListener("keydown", (s) => {
-                    call_movement_service_robot('atras')
-                })
-
-                document.addEventListener('input', (s) => {
-                    logMessage(`Key "${s.data}" input  [event: input]`);
-                    call_movement_service_robot('atras')
-                });
-
-
-                //d
-                document.addEventListener("keydown", (d) => {
-                    call_movement_service_robot('derecha')
-                })
-
-                document.addEventListener('input', (d) => {
-                    logMessage(`Key "${d.data}" input  [event: input]`);
-                    call_movement_service_robot('derecha')
-                });*/
                 
 
             },1500);
@@ -346,7 +304,7 @@ export default{
         const call_enviar_cords = async () => {
             let x = document.getElementById("x_input").value;
             let y = document.getElementById("y_input").value;
-            await enviar_coordenada(x,y);
+            await enviar_coordenada(x.toString(),y.toString());
 
         };
 
