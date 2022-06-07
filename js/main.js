@@ -18,7 +18,7 @@
     function pageBackground() {
         var body = $('body');
         if (body.hasClass('image-background')) { // Image background
-            $.backstretch(["http://placehold.it/1920x1080.jpg"]); // Replace here Image Background
+            $.backstretch([""]); // Replace here Image Background
         } else if (body.hasClass('slideshow-background')) { // Slideshow background
             $.backstretch([
                 "http://placehold.it/1920x1080.jpg", // Add different images
