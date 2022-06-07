@@ -21,65 +21,6 @@ document.addEventListener('DOMContentLoaded', event => {
         call_delante_service("parar")
     })
 
-    //w
-    document.addEventListener("keydown", (w) => {
-        call_delante_service("delante")
-    })
-
-    document.addEventListener('input', (w) => {
-        logMessage(`Key "${w.data}" input  [event: input]`);
-        call_delante_service("delante")
-    });
-
-    document.addEventListener('beforeinput', (a) => {
-        logMessage(`Key "${a.data}" about to be input  [event: beforeinput]`);
-        call_delante_service("izquierda")
-    });
-
-    //a
-    document.addEventListener("keydown", (a) => {
-        call_delante_service("izquierda")
-    })
-
-    document.addEventListener('input', (a) => {
-        logMessage(`Key "${a.data}" input  [event: input]`);
-        call_delante_service("izquierda")
-    });
-
-    document.addEventListener('beforeinput', (a) => {
-        logMessage(`Key "${a.data}" about to be input  [event: beforeinput]`);
-        call_delante_service("izquierda")
-    });
-
-    //s
-    document.addEventListener("keydown", (s) => {
-        call_delante_service("atras")
-    })
-
-    document.addEventListener('input', (s) => {
-        logMessage(`Key "${s.data}" input  [event: input]`);
-        call_delante_service("atras")
-    });
-
-    document.addEventListener('beforeinput', (s) => {
-        logMessage(`Key "${s.data}" about to be input  [event: beforeinput]`);
-        call_delante_service("atras")
-    });
-
-    //d
-    document.addEventListener("keydown", (d) => {
-        call_delante_service("derecha")
-    })
-
-    document.addEventListener('input', (d) => {
-        logMessage(`Key "${d.data}" input  [event: input]`);
-        call_delante_service("derecha")
-    });
-
-    document.addEventListener('beforeinput', (d) => {
-        logMessage(`Key "${d.data}" about to be input  [event: beforeinput]`);
-        call_delante_service("derecha")
-    });
 
     // btn tabs
     document.getElementById("btn_sacar_foto").addEventListener("click", () => {
@@ -263,7 +204,6 @@ document.addEventListener('DOMContentLoaded', event => {
     }
 
     function detectar_caras(){
-        connect();
 
         try {
 
@@ -279,7 +219,7 @@ document.addEventListener('DOMContentLoaded', event => {
             })
 
             let request = new ROSLIB.ServiceRequest({
-                type: valor
+                type: "caras"
             })
 
             service.callService(request, (result) => {
@@ -322,6 +262,7 @@ document.addEventListener('DOMContentLoaded', event => {
                 console.log("Servicio conectado ---> " )
                 console.log(JSON.stringify(result))
             }, (error) => {
+                console.log(request)
                 data.service_busy = false
                 console.error("Error en el callback del servicio")
             })
@@ -416,7 +357,7 @@ document.addEventListener('DOMContentLoaded', event => {
 
             let request = new ROSLIB.ServiceRequest({
                 x: x,
-                y: y
+                y: y,
             })
 
             service.callService(request, (result) => {
