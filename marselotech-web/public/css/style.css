@@ -2017,3 +2017,11 @@ input.form-control {
   margin-right: 2vh;
 }
 
+.faq-btn{
+  background-color: #00d2ff!important;
+  height: 7vh;
+  width: 37vh;
+  text-align: center;
+  font-size: 10pt!important;
+}
+
