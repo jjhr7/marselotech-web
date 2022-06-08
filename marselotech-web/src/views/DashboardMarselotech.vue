@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="c">
-                                        <button :click="call_detectar_armas_robot" type="button" class="btn btn-primary btn-sm">Detectar armas</button>
+                                        <button :click="call_detectar_armas_robot" type="button" class="btn btn-primary btn-sm" id="btnguns">Detectar armas</button>
 
                                         <div class="text-center">
                                             <a class="ripple img-fluid">
@@ -223,7 +223,9 @@ export default{
         onMounted(()=>{
             setTimeout(() => {
 
-                
+                document.getElementById("btnguns").addEventListener("click", () => {
+                    call_detectar_armas_robot();
+                })
 
             },1500);
         });
@@ -293,6 +295,7 @@ export default{
         };
 
         const call_detectar_armas_robot = () => {
+            console.log("test111");
             call_getLastImg("arma","tabGuns");
             detectar_armas();
         };
